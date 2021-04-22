@@ -1,5 +1,12 @@
 <template>
-  <button class="button" :class="{ 'button-border': type == 'border' }">
+  <button
+    class="button"
+    :class="{
+      'button-border': type == 'border',
+      'button-large': size == 'large',
+      'button-small': size == 'small',
+    }"
+  >
     <slot></slot>
   </button>
 </template>
@@ -10,6 +17,10 @@ export default {
     type: {
       type: String,
       default: "solid",
+    },
+    size: {
+      type: String,
+      default: "standart",
     },
   },
 };
@@ -23,7 +34,6 @@ export default {
   color: $white;
   font-size: 16px;
   font-weight: 500;
-  font-family: "ProximaNova", sans-serif;
   border: 1px solid $primary;
   border-radius: 10px;
   outline: none;
@@ -38,6 +48,16 @@ export default {
   &-border {
     color: $primary;
     background-color: transparent;
+  }
+
+  &-large {
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: 600;
+
+    &:hover {
+      transform: translate(-3px, 3px);
+    }
   }
 }
 </style>
