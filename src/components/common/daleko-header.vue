@@ -123,7 +123,7 @@ export default {
 
   &-logo {
     color: $primary;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 700;
     cursor: pointer;
 

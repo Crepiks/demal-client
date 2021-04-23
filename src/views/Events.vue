@@ -9,6 +9,7 @@
       :title="activeEvent.title"
       :description="activeEvent.description"
       :images="activeEvent.images"
+      @clear-active-event="clearActiveEvent"
     />
     <daleko-event-map
       class="events-map"
@@ -54,6 +55,12 @@ export default {
           this.activeEvent.coords = event.coords;
         }
       });
+    },
+    clearActiveEvent() {
+      this.activeEvent.title = "";
+      this.activeEvent.description = "";
+      this.activeEvent.images = [];
+      this.activeEvent.coords = [];
     },
   },
 };

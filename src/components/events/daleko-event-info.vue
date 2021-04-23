@@ -10,6 +10,9 @@
     >
   </div>
   <div v-else class="event-info">
+    <div class="event-close" @click="$emit('clear-active-event')">
+      <i class="bx bx-x event-close-icon"></i>
+    </div>
     <div class="event-gallery">
       <div
         class="event-image"
@@ -69,7 +72,34 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .event {
+  &-close {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+
+    &:hover {
+      transform: translate(-1px, 1px);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    &-icon {
+      color: $main-dark;
+      font-size: 20px;
+    }
+  }
+
   &-info {
+    position: relative;
     padding: 30px 20px;
     padding-right: 0;
     width: 60%;
