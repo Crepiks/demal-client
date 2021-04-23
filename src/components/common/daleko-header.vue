@@ -1,15 +1,43 @@
 <template>
   <header class="header">
     <div class="header-content">
+      <transition name="fade">
+        <div
+          v-if="isUserMenuOpen"
+          class="header-user-menu"
+          @mouseleave="isUserMenuOpen = false"
+        >
+          <router-link class="header-user-link" to=""
+            >Мои мероприятия</router-link
+          >
+          <router-link class="header-user-link" to=""
+            >Создать мероприятие</router-link
+          >
+          <span class="header-user-link header-user-danger" @click="logout"
+            >Выйти</span
+          >
+        </div>
+      </transition>
       <router-link to="/" class="header-logo-link">
         <h2 class="header-logo">Daleko</h2>
       </router-link>
-      <div class="header-buttons">
-        <daleko-button
-          v-if="isHomePage"
-          type="border"
-          @click="$router.push('/events')"
-          >Перейти к мероприятиям</daleko-button
+      <daleko-button
+        v-if="isHomePage"
+        type="border"
+        @click="$router.push('/events')"
+        >Перейти к мероприятиям</daleko-button
+      >
+      <div v-else class="header-button-container">
+        <span
+          v-if="userName"
+          class="header-user"
+          @click="isUserMenuOpen = !isUserMenuOpen"
+          ><i
+            v-if="!isUserMenuOpen"
+            class="bx bx-chevron-down header-user-icon"
+          ></i>
+          <i v-else class="bx bx-x header-user-icon"></i>
+          {{ userName }}</span
         >
         <daleko-button v-else type="border" @click="$router.push('/login')"
           >Войти</daleko-button
@@ -30,6 +58,8 @@ export default {
   data() {
     return {
       isHomePage: false,
+      userName: "",
+      isUserMenuOpen: false,
     };
   },
 
@@ -37,6 +67,17 @@ export default {
     if (this.$route.path == "/") {
       this.isHomePage = true;
     }
+
+    if (JSON.parse(localStorage.getItem("user"))) {
+      this.userName = JSON.parse(localStorage.getItem("user")).name;
+    }
+  },
+
+  methods: {
+    logout() {
+      localStorage.removeItem("user");
+      this.$router.push("/login");
+    },
   },
 
   watch: {
@@ -64,6 +105,7 @@ export default {
   z-index: 2;
 
   &-content {
+    position: relative;
     padding: 0 30px;
     margin: auto;
     height: 100%;
@@ -119,25 +161,81 @@ export default {
     }
   }
 
-  &-buttons {
-    height: 100%;
+  &-user {
+    padding: 10px 20px 10px 15px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    color: $main-dark;
+    font-size: 16px;
+    border-radius: 50px;
+    background-color: #ecf0f1;
+    cursor: pointer;
+    transition: 150ms ease-in-out;
 
-    &-left {
-      margin-right: 20px;
+    &:hover {
+      opacity: 0.8;
+
+      & .header-user-icon {
+        transform: translateY(2px);
+      }
+    }
+
+    &-icon {
+      margin-right: 5px;
+      margin-top: -2px;
+      font-size: 20px;
+      transition: 150ms ease-in-out;
+    }
+
+    &-menu {
+      position: absolute;
+      right: 30px;
+      top: 70px;
+      padding: 10px;
+      width: 200px;
+      height: auto;
+      display: flex;
+      box-sizing: border-box;
+      flex-direction: column;
+      border-radius: 10px;
+      background-color: white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    &-link {
+      padding: 12px 0;
+      padding-left: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      color: $main-dark;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: 200ms ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ecf0f180;
+      }
+    }
+
+    &-danger {
+      color: $error;
     }
   }
 }
 </style>
 
 <style lang="scss">
-@import "@/assets/styles/variables.scss";
-
-.router-link-active {
-  color: $primary !important;
-  border-bottom: 2px solid $primary !important;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 300ms;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

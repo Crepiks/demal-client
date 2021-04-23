@@ -35,6 +35,7 @@ export default {
 .list {
   padding: 30px 30px;
   padding-left: 0;
+  padding-top: 0;
   width: 45%;
   height: 100%;
   box-sizing: border-box;

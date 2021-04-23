@@ -1,5 +1,12 @@
 <template>
   <daleko-auth @submit="handleSubmit">
+    <daleko-notification
+      :isActive="isNotificationOpen"
+      :heading="notificationHeading"
+      :text="notificationText"
+      @close-notification="isNotificationOpen = false"
+      :status="notificationStatus"
+    />
     <h1 class="auth-title">
       Добро пожаловать<br />
       в Daleko
@@ -36,12 +43,14 @@
 import dalekoAuth from "@/components/common/daleko-auth.vue";
 import dalekoInput from "@/components/common/daleko-input.vue";
 import dalekoButton from "@/components/common/daleko-button.vue";
+import dalekoNotification from "@/components/common/daleko-notification.vue";
 
 export default {
   components: {
     "daleko-auth": dalekoAuth,
     "daleko-input": dalekoInput,
     "daleko-button": dalekoButton,
+    "daleko-notification": dalekoNotification,
   },
 
   data() {
@@ -49,12 +58,36 @@ export default {
       email: "",
       password: "",
       confirmPassword: "",
+      isNotificationOpen: false,
+      notificationHeading: "",
+      notificationText: "",
+      notificationStatus: "error",
     };
   },
 
   methods: {
     handleSubmit() {
-      console.log("Submit registration!!!");
+      if (
+        this.email.trim() &&
+        this.password.trim() &&
+        this.confirmPassword.trim()
+      ) {
+        if (this.password.trim() == this.confirmPassword.trim()) {
+          this.notificationHeading = "Что-то пошло не так";
+          this.notificationText =
+            "Проверьте ваше подключение к интернету и попробуйте еще раз";
+          this.isNotificationOpen = true;
+        } else {
+          this.notificationHeading = "Пароли не совпадают";
+          this.notificationText =
+            "Подтвердите пароль еще раз, возможно там ошибка";
+          this.isNotificationOpen = true;
+        }
+      } else {
+        this.notificationHeading = "Заполните все поля";
+        this.notificationText = "Для регистрации пожалуйста заполните все поля";
+        this.isNotificationOpen = true;
+      }
     },
   },
 };

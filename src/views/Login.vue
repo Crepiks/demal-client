@@ -1,5 +1,12 @@
 <template>
   <daleko-auth @submit="handleSubmit">
+    <daleko-notification
+      :isActive="isNotificationOpen"
+      :heading="notificationHeading"
+      :text="notificationText"
+      @close-notification="isNotificationOpen = false"
+      :status="notificationStatus"
+    />
     <h1 class="auth-title">Войдите в Daleko</h1>
     <daleko-input
       title="Почта"
@@ -28,24 +35,46 @@
 import dalekoAuth from "@/components/common/daleko-auth.vue";
 import dalekoInput from "@/components/common/daleko-input.vue";
 import dalekoButton from "@/components/common/daleko-button.vue";
+import dalekoNotification from "@/components/common/daleko-notification.vue";
 
 export default {
   components: {
     "daleko-auth": dalekoAuth,
     "daleko-input": dalekoInput,
     "daleko-button": dalekoButton,
+    "daleko-notification": dalekoNotification,
   },
 
   data() {
     return {
       email: "",
       password: "",
+      isNotificationOpen: false,
+      notificationHeading: "",
+      notificationText: "",
+      notificationStatus: "error",
     };
   },
 
   methods: {
     handleSubmit() {
-      console.log("Submit!!!");
+      if (this.email.trim() && this.password.trim()) {
+        if (
+          this.email.trim() == "test@mail.ru" &&
+          this.password.trim() == "qwerty"
+        ) {
+          localStorage.setItem("user", JSON.stringify({ name: "Азат" }));
+          this.$router.push("/events");
+        }
+        this.notificationHeading = "Что-то пошло не так";
+        this.notificationText =
+          "Проверьте ваше подключение к интернету и попробуйте еще раз";
+        this.isNotificationOpen = true;
+      } else {
+        this.notificationHeading = "Введите почту и пароль";
+        this.notificationText = "Для входа вы должны заполнить все поля";
+        this.isNotificationOpen = true;
+      }
     },
   },
 };
