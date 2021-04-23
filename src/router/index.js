@@ -5,6 +5,8 @@ import defaultLayout from "@/components/layouts/default-layout.vue";
 import headerLayout from "@/components/layouts/header-layout.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
+import Houses from "@/views/Houses.vue";
+import People from "@/views/People.vue";
 
 Vue.use(VueRouter);
 
@@ -23,6 +25,16 @@ const routes = [
             path: "/",
             name: "Home",
             component: Home,
+          },
+          {
+            path: "/houses",
+            name: "houses",
+            component: Houses,
+          },
+          {
+            path: "/people",
+            name: "people",
+            component: People,
           },
         ],
       },

@@ -39,6 +39,7 @@ export default {};
     align-items: center;
     color: $primary;
     text-decoration: none;
+    border: none !important;
     cursor: pointer;
     transition: 200ms ease-in-out;
     z-index: 5;
