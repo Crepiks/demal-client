@@ -6,6 +6,7 @@
       'button-border': type == 'border',
       'button-large': size == 'large',
       'button-small': size == 'small',
+      'button-rounded': borderRadius == 'rounded',
     }"
   >
     <slot></slot>
@@ -22,6 +23,10 @@ export default {
     size: {
       type: String,
       default: "standart",
+    },
+    borderRadius: {
+      type: String,
+      default: "medium",
     },
   },
 };
@@ -59,6 +64,15 @@ export default {
     &:hover {
       transform: translate(-3px, 3px);
     }
+  }
+
+  &-small {
+    padding: 6px 18px;
+    font-size: 13px;
+  }
+
+  &-rounded {
+    border-radius: 50px;
   }
 }
 </style>

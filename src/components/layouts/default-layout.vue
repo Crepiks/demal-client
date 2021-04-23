@@ -14,7 +14,7 @@ export default {};
   margin: auto;
   width: 100%;
   box-sizing: border-box;
-  max-width: 1224px;
+  max-width: 1400px;
   min-height: 100vh;
 }
 </style>

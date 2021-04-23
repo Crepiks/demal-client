@@ -14,7 +14,9 @@
         <daleko-button type="border" class="header-buttons-left"
           >Хочу сдать дом</daleko-button
         >
-        <daleko-button @click="$router.push('/login')">Войти</daleko-button>
+        <daleko-button type="border" @click="$router.push('/login')"
+          >Войти</daleko-button
+        >
       </div>
     </div>
   </header>
@@ -61,12 +63,13 @@ export default {
   top: 0;
   width: 100vw;
   height: 100px;
+  background-color: white;
 
   &-content {
     padding: 0 30px;
     margin: auto;
     height: 100%;
-    max-width: 1224px;
+    max-width: 1400px;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
