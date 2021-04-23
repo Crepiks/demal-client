@@ -1,5 +1,6 @@
 <template>
   <button
+    @click="$emit('click')"
     class="button"
     :class="{
       'button-border': type == 'border',

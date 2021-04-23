@@ -3,6 +3,8 @@ import VueRouter from "vue-router";
 import Home from "@/views/Home";
 import defaultLayout from "@/components/layouts/default-layout.vue";
 import headerLayout from "@/components/layouts/header-layout.vue";
+import Login from "@/views/Login.vue";
+import Register from "@/views/Register.vue";
 
 Vue.use(VueRouter);
 
@@ -25,6 +27,16 @@ const routes = [
         ],
       },
     ],
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: Register,
   },
 ];
 

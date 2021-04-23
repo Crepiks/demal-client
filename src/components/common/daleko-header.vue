@@ -7,7 +7,7 @@
       <daleko-button type="border" class="header-buttons-left"
         >Хочу сдать дом</daleko-button
       >
-      <daleko-button>Войти</daleko-button>
+      <daleko-button @click="$router.push('/login')">Войти</daleko-button>
     </div>
   </header>
 </template>
