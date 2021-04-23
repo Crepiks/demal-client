@@ -32,11 +32,15 @@
           v-if="userName"
           class="header-user"
           @click="isUserMenuOpen = !isUserMenuOpen"
-          ><i
-            v-if="!isUserMenuOpen"
-            class="bx bx-chevron-down header-user-icon"
-          ></i>
-          <i v-else class="bx bx-x header-user-icon"></i>
+        >
+          <transition name="icon" mode="out-in">
+            <i
+              v-if="!isUserMenuOpen"
+              key="open"
+              class="bx bx-chevron-down header-user-icon"
+            ></i>
+            <i v-else key="close" class="bx bx-x header-user-icon"></i>
+          </transition>
           {{ userName }}</span
         >
         <daleko-button v-else type="border" @click="$router.push('/login')"
@@ -102,6 +106,7 @@ export default {
   width: 100vw;
   height: 80px;
   background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 2;
 
   &-content {
@@ -173,6 +178,10 @@ export default {
     background-color: #ecf0f1;
     cursor: pointer;
     transition: 150ms ease-in-out;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 
     &:hover {
       opacity: 0.8;
@@ -216,6 +225,10 @@ export default {
       border-radius: 10px;
       transition: 200ms ease-in-out;
       cursor: pointer;
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
 
       &:hover {
         background-color: #ecf0f180;
@@ -236,6 +249,15 @@ export default {
 }
 .fade-enter,
 .fade-leave-to {
+  opacity: 0;
+}
+
+.icon-enter-active,
+.icon-leave-active {
+  transition: opacity 300ms;
+}
+.icon-enter,
+.icon-leave-to {
   opacity: 0;
 }
 </style>

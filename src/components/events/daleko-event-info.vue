@@ -1,40 +1,43 @@
 <template>
-  <div v-if="!title" class="event-empty">
-    <img
-      src="@/assets/images/event-empty-image.svg"
-      alt="Наведите на дом"
-      class="event-empty-image"
-    />
-    <span class="event-empty-title"
-      >Наведите курсор на дом, чтобы посмотреть больше информации о нем</span
-    >
-  </div>
-  <div v-else class="event-info">
-    <div class="event-close" @click="$emit('clear-active-event')">
-      <i class="bx bx-x event-close-icon"></i>
+  <transition name="fade" mode="out-in">
+    <div v-if="!title" class="event-empty" key="empty">
+      <img
+        src="@/assets/images/event-empty-image.svg"
+        alt="Наведите на дом"
+        class="event-empty-image"
+      />
+      <span class="event-empty-title"
+        >Наведите курсор на мероприятие, чтобы посмотреть больше информации о
+        нем</span
+      >
     </div>
-    <div class="event-gallery">
-      <div
-        class="event-image"
-        :style="{ backgroundImage: `url(${images[0].imagePath})` }"
-      ></div>
-      <div class="event-images">
+    <div v-else class="event-info" key="content">
+      <div class="event-close" @click="$emit('clear-active-event')">
+        <i class="bx bx-x event-close-icon"></i>
+      </div>
+      <div class="event-gallery">
         <div
-          class="event-preview"
-          v-for="(image, index) in images"
-          :key="index"
-          :style="{ backgroundImage: `url(${image.imagePath})` }"
+          class="event-image"
+          :style="{ backgroundImage: `url(${images[0].imagePath})` }"
         ></div>
+        <div class="event-images">
+          <div
+            class="event-preview"
+            v-for="(image, index) in images"
+            :key="index"
+            :style="{ backgroundImage: `url(${image.imagePath})` }"
+          ></div>
+        </div>
+      </div>
+      <div class="event-text">
+        <h1 class="event-title">{{ title }}</h1>
+        <p class="event-description">{{ description }}</p>
+        <div class="event-button">
+          <daleko-button>Арендовать дом</daleko-button>
+        </div>
       </div>
     </div>
-    <div class="event-text">
-      <h1 class="event-title">{{ title }}</h1>
-      <p class="event-description">{{ description }}</p>
-      <div class="event-button">
-        <daleko-button>Арендовать дом</daleko-button>
-      </div>
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -194,11 +197,11 @@ export default {
     }
 
     &-title {
-      width: 80%;
+      width: 60%;
       color: $main-dark;
       font-size: 20px;
       font-weight: 600;
-      line-height: 130%;
+      line-height: 150%;
       text-align: center;
       opacity: 0.6;
       -moz-user-select: none;
@@ -207,5 +210,16 @@ export default {
       user-select: none;
     }
   }
+}
+</style>
+
+<style lang="scss">
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 200ms;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

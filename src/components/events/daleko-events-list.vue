@@ -1,5 +1,11 @@
 <template>
   <div class="list">
+    <div class="list-header">
+      <h2 class="list-title">Список мероприятий</h2>
+      <daleko-button @click="$router.push('/events/add')" size="small"
+        >Создать мероприятие</daleko-button
+      >
+    </div>
     <daleko-event-card
       class="list-card"
       v-for="event in events"
@@ -16,6 +22,7 @@
 
 <script>
 import dalekoEventCard from "@/components/events/daleko-event-card.vue";
+import dalekoButton from "@/components/common/daleko-button.vue";
 
 export default {
   props: {
@@ -27,11 +34,14 @@ export default {
 
   components: {
     "daleko-event-card": dalekoEventCard,
+    "daleko-button": dalekoButton,
   },
 };
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
 .list {
   padding: 30px 30px;
   padding-left: 0;
@@ -44,6 +54,20 @@ export default {
   align-items: center;
   border-right: 2px solid #b2bec350;
   overflow: scroll;
+
+  &-header {
+    padding: 30px 0 10px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-title {
+    color: $main-dark;
+    font-size: 28px;
+    font-weight: 600;
+  }
 
   &-card {
     border-bottom: 1px solid #c3c3c3;
