@@ -8,22 +8,22 @@
     />
     <yandex-map
       :key="mapMode"
-      :coords="houseCoords"
+      :coords="eventCoords"
       style="width: 100%; height: 100%; z-index: 5"
       :controls="[]"
       :map-type="mapMode == 1 ? 'hybrid' : 'map'"
     >
-      <ymap-marker :markerId="1" :coords="houseCoords"></ymap-marker>
+      <ymap-marker :markerId="1" :coords="eventCoords"></ymap-marker>
     </yandex-map>
   </div>
 </template>
 
 <script>
-import dalekoMapHeader from "@/components/houses/daleko-map-header.vue";
+import dalekoMapHeader from "@/components/events/daleko-map-header.vue";
 
 export default {
   props: {
-    houseCoords: {
+    eventCoords: {
       type: Array,
       required: true,
     },

@@ -1,33 +1,33 @@
 <template>
-  <div v-if="!title" class="house-empty">
+  <div v-if="!title" class="event-empty">
     <img
-      src="@/assets/images/house-empty-image.svg"
+      src="@/assets/images/event-empty-image.svg"
       alt="Наведите на дом"
-      class="house-empty-image"
+      class="event-empty-image"
     />
-    <span class="house-empty-title"
+    <span class="event-empty-title"
       >Наведите курсор на дом, чтобы посмотреть больше информации о нем</span
     >
   </div>
-  <div v-else class="house-info">
-    <div class="house-gallery">
+  <div v-else class="event-info">
+    <div class="event-gallery">
       <div
-        class="house-image"
+        class="event-image"
         :style="{ backgroundImage: `url(${images[0].imagePath})` }"
       ></div>
-      <div class="house-images">
+      <div class="event-images">
         <div
-          class="house-preview"
+          class="event-preview"
           v-for="(image, index) in images"
           :key="index"
           :style="{ backgroundImage: `url(${image.imagePath})` }"
         ></div>
       </div>
     </div>
-    <div class="house-text">
-      <h1 class="house-title">{{ title }}</h1>
-      <p class="house-description">{{ description }}</p>
-      <div class="house-button">
+    <div class="event-text">
+      <h1 class="event-title">{{ title }}</h1>
+      <p class="event-description">{{ description }}</p>
+      <div class="event-button">
         <daleko-button>Арендовать дом</daleko-button>
       </div>
     </div>
@@ -68,7 +68,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/variables.scss";
 
-.house {
+.event {
   &-info {
     padding: 30px 20px;
     padding-right: 0;

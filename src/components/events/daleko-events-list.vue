@@ -1,32 +1,32 @@
 <template>
   <div class="list">
-    <daleko-house-card
+    <daleko-event-card
       class="list-card"
-      v-for="house in houses"
-      :key="house.id"
-      :title="house.title"
-      :description="house.description"
-      :price="house.price"
-      :imagePath="house.images[0].imagePath"
-      @mouseenter="$emit('change-active-house', house.id)"
+      v-for="event in events"
+      :key="event.id"
+      :title="event.title"
+      :description="event.description"
+      :price="event.price"
+      :imagePath="event.images[0].imagePath"
+      @mouseenter="$emit('change-active-event', event.id)"
       @open-map="$emit('open-map')"
     />
   </div>
 </template>
 
 <script>
-import dalekoHouseCard from "@/components/houses/daleko-house-card.vue";
+import dalekoEventCard from "@/components/events/daleko-event-card.vue";
 
 export default {
   props: {
-    houses: {
+    events: {
       type: Array,
       required: true,
     },
   },
 
   components: {
-    "daleko-house-card": dalekoHouseCard,
+    "daleko-event-card": dalekoEventCard,
   },
 };
 </script>

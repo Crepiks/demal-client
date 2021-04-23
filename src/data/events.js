@@ -39,7 +39,7 @@ export default [
           "http://housefasad.ru/images/00000000000000000000000000000000000000000000000000000000000000000000000000000000000000001245845.jpg",
       },
     ],
-    price: 5000,
+    price: 10000,
   },
   {
     id: 2,
@@ -81,7 +81,7 @@ export default [
           "https://www.magazindomov.ru/wp-content/uploads/2015/05/Pool-House-3-678x381.jpg",
       },
     ],
-    price: 5000,
+    price: 1500,
   },
   {
     id: 3,
@@ -165,6 +165,6 @@ export default [
           "http://housefasad.ru/images/00000000000000000000000000000000000000000000000000000000000000000000000000000000000000001245845.jpg",
       },
     ],
-    price: 5000,
+    price: 3000,
   },
 ];

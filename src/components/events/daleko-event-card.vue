@@ -1,14 +1,14 @@
 <template>
-  <div class="house-card" @mouseenter="$emit('mouseenter')">
+  <div class="event-card" @mouseenter="$emit('mouseenter')">
     <div
-      class="house-image"
+      class="event-image"
       :style="{ backgroundImage: `url(${imagePath})` }"
     ></div>
-    <div class="house-text">
-      <h3 class="house-title">{{ title }}</h3>
-      <p class="house-description">{{ description.slice(0, 50) }}...</p>
-      <div class="house-extra">
-        <span class="house-price">{{ price }}₽ / сутки</span>
+    <div class="event-text">
+      <h3 class="event-title">{{ title }}</h3>
+      <p class="event-description">{{ description.slice(0, 50) }}...</p>
+      <div class="event-extra">
+        <span class="event-price">{{ price }}₽ / сутки</span>
         <daleko-button
           @click="$emit('open-map')"
           type="border"
@@ -53,7 +53,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/variables.scss";
 
-.house {
+.event {
   &-card {
     width: 100%;
     display: flex;

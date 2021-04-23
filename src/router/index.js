@@ -5,7 +5,7 @@ import defaultLayout from "@/components/layouts/default-layout.vue";
 import headerLayout from "@/components/layouts/header-layout.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
-import Houses from "@/views/Houses.vue";
+import Events from "@/views/Events.vue";
 import People from "@/views/People.vue";
 
 Vue.use(VueRouter);
@@ -27,9 +27,9 @@ const routes = [
             component: Home,
           },
           {
-            path: "/houses",
+            path: "/events",
             name: "houses",
-            component: Houses,
+            component: Events,
           },
           {
             path: "/people",
