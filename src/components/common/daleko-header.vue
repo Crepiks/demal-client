@@ -1,20 +1,17 @@
 <template>
-  <header class="header" :class="{ 'header-border': headerBorder }">
+  <header class="header">
     <div class="header-content">
       <router-link to="/" class="header-logo-link">
         <h2 class="header-logo">Daleko</h2>
       </router-link>
-      <nav class="header-nav">
-        <router-link class="header-link" to="/houses">Найти дом</router-link>
-        <router-link class="header-link" to="/people"
-          >Найти команду</router-link
-        >
-      </nav>
       <div class="header-buttons">
-        <daleko-button type="border" class="header-buttons-left"
-          >Хочу сдать дом</daleko-button
+        <daleko-button
+          v-if="isHomePage"
+          type="border"
+          @click="$router.push('/events')"
+          >Перейти к мероприятиям</daleko-button
         >
-        <daleko-button type="border" @click="$router.push('/login')"
+        <daleko-button v-else type="border" @click="$router.push('/login')"
           >Войти</daleko-button
         >
       </div>
@@ -32,22 +29,22 @@ export default {
 
   data() {
     return {
-      headerBorder: false,
+      isHomePage: false,
     };
   },
 
   mounted() {
-    if (this.$route.path != "/") {
-      this.headerBorder = true;
+    if (this.$route.path == "/") {
+      this.isHomePage = true;
     }
   },
 
   watch: {
     $route() {
-      if (this.$route.path != "/") {
-        this.headerBorder = true;
+      if (this.$route.path == "/") {
+        this.isHomePage = true;
       } else {
-        this.headerBorder = false;
+        this.isHomePage = false;
       }
     },
   },
@@ -62,7 +59,7 @@ export default {
   left: 0;
   top: 0;
   width: 100vw;
-  height: 100px;
+  height: 80px;
   background-color: white;
   z-index: 2;
 
