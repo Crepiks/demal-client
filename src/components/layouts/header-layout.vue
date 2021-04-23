@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page-header">
     <daleko-header />
     <div class="page-content">
       <router-view />

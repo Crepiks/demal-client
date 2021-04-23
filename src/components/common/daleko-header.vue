@@ -63,6 +63,7 @@ export default {
   height: 100px;
 
   &-content {
+    padding: 0 30px;
     margin: auto;
     height: 100%;
     max-width: 1224px;
