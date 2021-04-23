@@ -9,7 +9,11 @@
       <p class="house-description">{{ description.slice(0, 50) }}...</p>
       <div class="house-extra">
         <span class="house-price">{{ price }}₽ / сутки</span>
-        <daleko-button type="border" borderRadius="rounded" size="small"
+        <daleko-button
+          @click="$emit('open-map')"
+          type="border"
+          borderRadius="rounded"
+          size="small"
           >Показать на карте</daleko-button
         >
       </div>

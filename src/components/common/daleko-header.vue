@@ -64,6 +64,7 @@ export default {
   width: 100vw;
   height: 100px;
   background-color: white;
+  z-index: 2;
 
   &-content {
     padding: 0 30px;

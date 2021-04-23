@@ -9,6 +9,7 @@
       :price="house.price"
       :imagePath="house.images[0].imagePath"
       @mouseenter="$emit('change-active-house', house.id)"
+      @open-map="$emit('open-map')"
     />
   </div>
 </template>
