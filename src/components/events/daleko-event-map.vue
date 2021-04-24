@@ -49,11 +49,11 @@ export default {
 <style lang="scss" scoped>
 .map {
   &-modal {
-    position: absolute;
-    left: 0;
-    right: 0;
+    position: fixed;
     bottom: -98vh;
     margin: auto;
+    right: 0;
+    left: 0;
     width: 98vw;
     height: 98vh;
     border-radius: 20px 20px 0 0;

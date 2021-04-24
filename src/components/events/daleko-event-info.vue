@@ -108,7 +108,9 @@ export default {
       }
     },
     images() {
-      this.activeImage = this.images[0].imagePath;
+      if (this.images[0]) {
+        this.activeImage = this.images[0].imagePath;
+      }
     },
   },
 

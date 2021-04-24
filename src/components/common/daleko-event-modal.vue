@@ -145,8 +145,8 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .event {
-  position: absolute;
-  bottom: -98vh;
+  position: fixed !important;
+  bottom: -100vh;
   left: 0;
   right: 0;
   margin: auto;
@@ -156,20 +156,20 @@ export default {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  border-radius: 20px 0;
+  border-radius: 20px 20px 0 0;
   background-color: white;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   transition: 400ms ease-in-out;
   z-index: 5;
 
   &-active {
-    transform: translateY(-98vh);
+    transform: translateY(-100vh);
   }
 
   &-close {
     position: absolute;
-    top: 10px;
-    right: 0px;
+    top: -10px;
+    right: -10px;
     width: 40px;
     height: 40px;
     display: flex;

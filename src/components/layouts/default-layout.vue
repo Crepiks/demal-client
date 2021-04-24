@@ -30,7 +30,6 @@ export default {};
   box-sizing: border-box;
   max-width: 1400px;
   min-height: 100vh;
-  overflow: hidden;
 }
 
 .mobile {

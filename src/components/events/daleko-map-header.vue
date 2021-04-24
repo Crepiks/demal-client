@@ -39,7 +39,7 @@ export default {
   &-header {
     padding: 20px 40px;
     position: absolute;
-    top: 10px;
+    top: 20px;
     left: 0;
     right: 0;
     margin: auto;
@@ -51,7 +51,7 @@ export default {
     align-items: center;
     border-radius: 10px;
     background-color: $white;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     z-index: 5;
   }
 

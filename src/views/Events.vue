@@ -90,7 +90,7 @@ export default {
     clearActiveEvent() {
       this.activeEvent.title = "";
       this.activeEvent.description = "";
-      this.activeEvent.images = [];
+      this.activeEvent.images = [{ imagePath: "" }];
       this.activeEvent.coords = [0, 0];
       this.activeEvent.date = ["", ""];
       this.activeEvent.creator = { firstName: "", lastName: "", email: "" };
