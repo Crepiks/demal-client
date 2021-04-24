@@ -11,12 +11,22 @@
       :images="activeEvent.images"
       :date="activeEvent.date"
       @clear-active-event="clearActiveEvent"
+      @open-event-modal="isEventModalOpen = true"
     />
     <daleko-event-map
       class="events-map"
       :eventCoords="activeEvent.coords"
       :isMapOpen="isMapOpen"
       @close-map="isMapOpen = false"
+    />
+    <daleko-event-modal
+      :title="activeEvent.title"
+      :description="activeEvent.description"
+      :creator="activeEvent.creator"
+      :participants="activeEvent.participants"
+      :isEventModalOpen="isEventModalOpen"
+      :images="activeEvent.images"
+      @close-event-modal="isEventModalOpen = false"
     />
   </div>
 </template>
@@ -25,12 +35,14 @@
 import dalekoEventsList from "@/components/events/daleko-events-list.vue";
 import dalekoEventInfo from "@/components/events/daleko-event-info.vue";
 import dalekoEventMap from "@/components/events/daleko-event-map.vue";
+import dalekoEventModal from "@/components/common/daleko-event-modal.vue";
 import events from "@/data/events.js";
 export default {
   components: {
     "daleko-events-list": dalekoEventsList,
     "daleko-event-info": dalekoEventInfo,
     "daleko-event-map": dalekoEventMap,
+    "daleko-event-modal": dalekoEventModal,
   },
 
   data() {
@@ -42,8 +54,21 @@ export default {
         images: [],
         coords: [0, 0],
         date: ["", ""],
+        creator: {
+          firstName: "",
+          lastName: "",
+          email: "",
+        },
+        participants: [
+          {
+            firstName: "",
+            lastName: "",
+            email: "",
+          },
+        ],
       },
       isMapOpen: false,
+      isEventModalOpen: false,
     };
   },
 
@@ -56,6 +81,9 @@ export default {
           this.activeEvent.images = event.images;
           this.activeEvent.coords = [event.lat, event.lon];
           this.activeEvent.date = [event.start, event.end];
+          this.activeEvent.creator.firstName = event.creator.firstName;
+          this.activeEvent.creator.email = event.creator.email;
+          this.activeEvent.participants = event.participants;
         }
       });
     },

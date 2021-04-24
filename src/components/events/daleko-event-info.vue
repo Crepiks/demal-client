@@ -56,7 +56,9 @@
           >
         </div>
         <div class="event-button">
-          <daleko-button>Присоединиться к мероприятию</daleko-button>
+          <daleko-button @click="$emit('open-event-modal')"
+            >Перейти к мероприятию</daleko-button
+          >
         </div>
       </div>
     </div>

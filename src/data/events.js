@@ -5,7 +5,7 @@ export default [
     lat: 54.039777,
     lon: 43.935073,
     description:
-      "Двухэтажный дом с 7 комнотами, олтичным ремонтом и интернетом недалеко от озера. Также в доме есть мангал, при желании можно приготовить барбекю.",
+      "Двухэтажный дом с 7 комнатами, отличным ремонтом и интернетом недалеко от озера. Также в доме есть мангал, при желании можно приготовить барбекю.",
     images: [
       {
         imagePath:
@@ -40,6 +40,31 @@ export default [
           "http://housefasad.ru/images/00000000000000000000000000000000000000000000000000000000000000000000000000000000000000001245845.jpg",
       },
     ],
+    participants: [
+      {
+        id: 1,
+        firstName: "Саяжан",
+        lastName: "Онласын",
+        email: "sayazhan@mail.ru",
+      },
+      {
+        id: 2,
+        firstName: "Аружан",
+        lastName: "Бесекова",
+        email: "aryka2003@mail.ru",
+      },
+      {
+        id: 3,
+        firstName: "Тимур",
+        lastName: "Сейткалиев",
+        email: "tima.director@mail.ru",
+      },
+    ],
+    creator: {
+      firstName: "Арсен",
+      lastName: "Асанов",
+      email: "arsen@mail.ru",
+    },
     start: "2021-04-05T14:24:01.000Z",
     end: "2021-04-23T14:24:01.000Z",
     price: 10000,
@@ -85,6 +110,31 @@ export default [
           "https://www.magazindomov.ru/wp-content/uploads/2015/05/Pool-House-3-678x381.jpg",
       },
     ],
+    participants: [
+      {
+        id: 1,
+        firstName: "Саяжан",
+        lastName: "Онласын",
+        email: "sayazhan@mail.ru",
+      },
+      {
+        id: 2,
+        firstName: "Аружан",
+        lastName: "Бесекова",
+        email: "aryka2003@mail.ru",
+      },
+      {
+        id: 3,
+        firstName: "Тимур",
+        lastName: "Сейткалиев",
+        email: "tima.director@mail.ru",
+      },
+    ],
+    creator: {
+      firstName: "Арсен",
+      lastName: "Асанов",
+      email: "arsen@mail.ru",
+    },
     start: "2021-03-07T14:24:01.000Z",
     end: "2021-04-12T14:24:01.000Z",
     price: 1500,
@@ -130,6 +180,31 @@ export default [
           "http://housefasad.ru/images/00000000000000000000000000000000000000000000000000000000000000000000000000000000000000001245845.jpg",
       },
     ],
+    participants: [
+      {
+        id: 1,
+        firstName: "Саяжан",
+        lastName: "Онласын",
+        email: "sayazhan@mail.ru",
+      },
+      {
+        id: 2,
+        firstName: "Аружан",
+        lastName: "Бесекова",
+        email: "aryka2003@mail.ru",
+      },
+      {
+        id: 3,
+        firstName: "Тимур",
+        lastName: "Сейткалиев",
+        email: "tima.director@mail.ru",
+      },
+    ],
+    creator: {
+      firstName: "Арсен",
+      lastName: "Асанов",
+      email: "arsen@mail.ru",
+    },
     start: "2021-04-10T14:24:01.000Z",
     end: "2021-05-02T14:24:01.000Z",
     price: 5000,
@@ -175,6 +250,31 @@ export default [
           "http://housefasad.ru/images/00000000000000000000000000000000000000000000000000000000000000000000000000000000000000001245845.jpg",
       },
     ],
+    participants: [
+      {
+        id: 1,
+        firstName: "Саяжан",
+        lastName: "Онласын",
+        email: "sayazhan@mail.ru",
+      },
+      {
+        id: 2,
+        firstName: "Аружан",
+        lastName: "Бесекова",
+        email: "aryka2003@mail.ru",
+      },
+      {
+        id: 3,
+        firstName: "Тимур",
+        lastName: "Сейткалиев",
+        email: "tima.director@mail.ru",
+      },
+    ],
+    creator: {
+      firstName: "Арсен",
+      lastName: "Асанов",
+      email: "arsen@mail.ru",
+    },
     start: "2021-05-07T14:24:01.000Z",
     end: "2021-06-17T14:24:01.000Z",
     price: 3000,
