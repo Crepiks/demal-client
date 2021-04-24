@@ -6,7 +6,7 @@ import headerLayout from "@/components/layouts/header-layout.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
 import Events from "@/views/Events.vue";
-import People from "@/views/People.vue";
+import UserEvents from "@/views/UserEvents.vue";
 
 Vue.use(VueRouter);
 
@@ -32,9 +32,9 @@ const routes = [
             component: Events,
           },
           {
-            path: "/people",
-            name: "people",
-            component: People,
+            path: "/my-events",
+            name: "my-events",
+            component: UserEvents,
           },
         ],
       },

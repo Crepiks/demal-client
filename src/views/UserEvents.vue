@@ -1,7 +1,8 @@
 <template>
-  <div class="events-page">
-    <daleko-events-list
-      :events="events"
+  <div class="my-events-page">
+    <daleko-user-events-list
+      :participatedEvents="participatedEvents"
+      :createdEvents="createdEvents"
       @change-active-event="changeActiveEvent"
       @open-map="isMapOpen = true"
     />
@@ -32,14 +33,15 @@
 </template>
 
 <script>
-import dalekoEventsList from "@/components/events/daleko-events-list.vue";
+import dalekoUserEventsList from "@/components/user-events/daleko-user-events-list.vue";
 import dalekoEventInfo from "@/components/events/daleko-event-info.vue";
 import dalekoEventMap from "@/components/events/daleko-event-map.vue";
 import dalekoEventModal from "@/components/common/daleko-event-modal.vue";
-import events from "@/data/events.js";
+import userEvents from "@/data/userEvents.js";
+
 export default {
   components: {
-    "daleko-events-list": dalekoEventsList,
+    "daleko-user-events-list": dalekoUserEventsList,
     "daleko-event-info": dalekoEventInfo,
     "daleko-event-map": dalekoEventMap,
     "daleko-event-modal": dalekoEventModal,
@@ -47,7 +49,8 @@ export default {
 
   data() {
     return {
-      events: events,
+      participatedEvents: userEvents.participatedEvents,
+      createdEvents: userEvents.createdEvents,
       activeEvent: {
         title: "",
         description: "",
@@ -74,7 +77,8 @@ export default {
 
   methods: {
     changeActiveEvent(eventId) {
-      this.events.forEach((event) => {
+      const events = this.participatedEvents.concat(this.createdEvents);
+      events.forEach((event) => {
         if (event.id == eventId) {
           this.activeEvent.title = event.title;
           this.activeEvent.description = event.description;
@@ -87,6 +91,7 @@ export default {
         }
       });
     },
+
     clearActiveEvent() {
       this.activeEvent.title = "";
       this.activeEvent.description = "";
@@ -103,16 +108,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.events {
+.my-events {
   &-page {
     width: 100%;
     height: calc(100vh - 80px);
     display: flex;
     flex-direction: row;
-  }
-
-  &-map {
-    position: absolute;
   }
 }
 </style>

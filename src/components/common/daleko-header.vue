@@ -7,7 +7,7 @@
           class="header-user-menu"
           @mouseleave="isUserMenuOpen = false"
         >
-          <router-link class="header-user-link" to=""
+          <router-link class="header-user-link" to="/my-events"
             >Мои мероприятия</router-link
           >
           <router-link class="header-user-link" to=""
@@ -18,7 +18,7 @@
           >
         </div>
       </transition>
-      <router-link to="/" class="header-logo-link">
+      <router-link :to="isHomePage ? '/' : '/events'" class="header-logo-link">
         <h2 class="header-logo">Daleko</h2>
       </router-link>
       <daleko-button
@@ -73,7 +73,7 @@ export default {
     }
 
     if (JSON.parse(localStorage.getItem("user"))) {
-      this.userName = JSON.parse(localStorage.getItem("user")).name;
+      this.userName = JSON.parse(localStorage.getItem("user")).firstName;
     }
   },
 
@@ -86,6 +86,7 @@ export default {
 
   watch: {
     $route() {
+      this.isUserMenuOpen = false;
       if (this.$route.path == "/") {
         this.isHomePage = true;
       } else {
