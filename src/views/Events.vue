@@ -52,7 +52,7 @@ export default {
           this.activeEvent.title = event.title;
           this.activeEvent.description = event.description;
           this.activeEvent.images = event.images;
-          this.activeEvent.coords = event.coords;
+          this.activeEvent.coords = [event.lat, event.lon];
         }
       });
     },

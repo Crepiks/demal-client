@@ -8,7 +8,7 @@
       <h3 class="event-title">{{ title }}</h3>
       <p class="event-description">{{ description.slice(0, 50) }}...</p>
       <div class="event-extra">
-        <span class="event-price">{{ price }}₽ / сутки</span>
+        <span class="event-price">{{ price }} ₽ взнос</span>
         <daleko-button
           @click="$emit('open-map')"
           type="border"

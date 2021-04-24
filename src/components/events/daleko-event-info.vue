@@ -33,7 +33,7 @@
         <h1 class="event-title">{{ title }}</h1>
         <p class="event-description">{{ description }}</p>
         <div class="event-button">
-          <daleko-button>Арендовать дом</daleko-button>
+          <daleko-button>Присоединиться к мероприятию</daleko-button>
         </div>
       </div>
     </div>
