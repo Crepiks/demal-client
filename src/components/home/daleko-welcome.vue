@@ -1,8 +1,8 @@
 <template>
   <div class="welcome">
     <h1 class="welcome-title">
-      Работай там,<br />
-      где тебе удобно
+      Мероприятия вдали<br />
+      от городской суеты
     </h1>
     <div class="welcome-button">
       <daleko-button size="large">Как это работает?</daleko-button>
@@ -35,10 +35,8 @@ export default {
 
   &-title {
     margin: 10% 0 40px;
-    color: black;
+    color: $main-dark;
     font-size: 70px;
-    font-weight: 900;
-    font-family: "Montserrat", sans-serif !important;
   }
 }
 </style>
