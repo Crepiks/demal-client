@@ -9,6 +9,7 @@
       :title="activeEvent.title"
       :description="activeEvent.description"
       :images="activeEvent.images"
+      :date="activeEvent.date"
       @clear-active-event="clearActiveEvent"
     />
     <daleko-event-map
@@ -40,6 +41,7 @@ export default {
         description: "",
         images: [],
         coords: [0, 0],
+        date: ["", ""],
       },
       isMapOpen: false,
     };
@@ -53,6 +55,7 @@ export default {
           this.activeEvent.description = event.description;
           this.activeEvent.images = event.images;
           this.activeEvent.coords = [event.lat, event.lon];
+          this.activeEvent.date = [event.start, event.end];
         }
       });
     },
@@ -60,7 +63,8 @@ export default {
       this.activeEvent.title = "";
       this.activeEvent.description = "";
       this.activeEvent.images = [];
-      this.activeEvent.coords = [];
+      this.activeEvent.coords = [0, 0];
+      this.activeEvent.date = ["", ""];
     },
   },
 };

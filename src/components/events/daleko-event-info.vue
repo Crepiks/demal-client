@@ -3,7 +3,7 @@
     <div v-if="!title" class="event-empty" key="empty">
       <img
         src="@/assets/images/event-empty-image.svg"
-        alt="Наведите на дом"
+        alt="Наведите курсор на мероприятие"
         class="event-empty-image"
       />
       <span class="event-empty-title"
@@ -32,6 +32,28 @@
       <div class="event-text">
         <h1 class="event-title">{{ title }}</h1>
         <p class="event-description">{{ description }}</p>
+        <div class="event-date">
+          <div class="event-date-label">Дата проведения:</div>
+          <span class="event-date-point">с {{ parsedDate[0] }}</span>
+          <span class="event-date-point">до {{ parsedDate[1] }}</span>
+          <span
+            class="event-date-status"
+            :class="{
+              'event-date-status-passed': eventStatus == 'passed',
+              'event-date-status-passing': eventStatus == 'passing',
+              'event-date-status-will': eventStatus == 'willPass',
+            }"
+            >{{
+              eventStatus == "passing"
+                ? "Проводится сейчас"
+                : eventStatus == "willPass"
+                ? "Еще не началось"
+                : eventStatus == "passed"
+                ? "Уже прошло"
+                : ""
+            }}</span
+          >
+        </div>
         <div class="event-button">
           <daleko-button>Присоединиться к мероприятию</daleko-button>
         </div>
@@ -57,6 +79,10 @@ export default {
       type: Array,
       required: true,
     },
+    date: {
+      type: Array,
+      required: true,
+    },
   },
 
   components: {
@@ -66,7 +92,55 @@ export default {
   data() {
     return {
       activeImage: "",
+      eventStatus: "",
+      parsedDate: [],
     };
+  },
+
+  watch: {
+    date() {
+      if (this.date) {
+        this.parseDate();
+        this.getStatus();
+      }
+    },
+  },
+
+  methods: {
+    parseDate() {
+      this.date.forEach((date, index) => {
+        let seconds = Date.parse(date);
+        let normalDate = new Date(seconds);
+        this.parsedDate[index] = `${this.formatDate(
+          normalDate.getDate()
+        )}.${this.formatDate(
+          normalDate.getMonth() + 1
+        )}.${normalDate.getFullYear()}`;
+      });
+    },
+
+    getStatus() {
+      if (this.date) {
+        let currentDate = Date.now();
+        if (Date.parse(this.date[1]) > currentDate) {
+          if (Date.parse(this.date[0]) < currentDate) {
+            this.eventStatus = "passing";
+          } else {
+            this.eventStatus = "willPass";
+          }
+        } else {
+          this.eventStatus = "passed";
+        }
+      }
+    },
+
+    formatDate(dateNumber) {
+      if (dateNumber < 10) {
+        return "0" + dateNumber;
+      } else {
+        return dateNumber;
+      }
+    },
   },
 };
 </script>
@@ -170,11 +244,45 @@ export default {
   }
 
   &-description {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     color: $main-dark;
     font-size: 18px;
     line-height: 150%;
     opacity: 0.7;
+  }
+
+  &-date {
+    margin-bottom: 25px;
+    color: $main-dark;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    opacity: 0.8;
+
+    &-label {
+      margin-right: 10px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    &-point {
+      margin-right: 5px;
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+    &-status {
+      margin-left: 10px;
+      font-size: 18px;
+
+      &-passed {
+        color: $error;
+      }
+
+      &-passing {
+        color: $primary;
+      }
+    }
   }
 
   &-empty {
@@ -200,7 +308,7 @@ export default {
       width: 60%;
       color: $main-dark;
       font-size: 20px;
-      font-weight: 600;
+      font-weight: 500;
       line-height: 150%;
       text-align: center;
       opacity: 0.6;
