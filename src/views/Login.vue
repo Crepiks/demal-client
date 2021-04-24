@@ -36,7 +36,7 @@ import dalekoAuth from "@/components/common/daleko-auth.vue";
 import dalekoInput from "@/components/common/daleko-input.vue";
 import dalekoButton from "@/components/common/daleko-button.vue";
 import dalekoNotification from "@/components/common/daleko-notification.vue";
-// import { login } from "@/requests/auth.js";
+import { login } from "@/requests/auth.js";
 
 export default {
   components: {
@@ -60,34 +60,27 @@ export default {
   methods: {
     handleSubmit() {
       if (this.email.trim() && this.password.trim()) {
-        // const credentials = {
-        //   email: this.email.trim(),
-        //   password: this.password.trim(),
-        // };
-        // login(credentials)
-        //   .then((res) => {
-        //     const user = {
-        //       firstName: res.data.user.firstName,
-        //       lastName: res.data.user.lastName,
-        //       email: res.data.user.email,
-        //       token: res.data.user.auth.token,
-        //     };
-        //     localStorage.setItem("user", JSON.stringify(user));
-        //     this.$router.push("/events");
-        //   })
-        //   .catch(() => {
-        //     this.notificationHeading = "Что-то пошло не так";
-        //     this.notificationText =
-        //       "Проверьте ваше подключение к интернету и попробуйте еще раз";
-        //     this.isNotificationOpen = true;
-        //   });
-        if (
-          this.email.trim() == "test@mail.ru" &&
-          this.password.trim() == "qwerty"
-        ) {
-          localStorage.setItem("user", JSON.stringify({ firstName: "Азат" }));
-          this.$router.push("/events");
-        }
+        const credentials = {
+          email: this.email.trim(),
+          password: this.password.trim(),
+        };
+        login(credentials)
+          .then((res) => {
+            const user = {
+              firstName: res.data.user.firstName,
+              lastName: res.data.user.lastName,
+              email: res.data.user.email,
+              token: res.data.auth.token,
+            };
+            localStorage.setItem("user", JSON.stringify(user));
+            this.$router.push("/events");
+          })
+          .catch(() => {
+            this.notificationHeading = "Неверная почта или пароль";
+            this.notificationText =
+              "Проверьте правильно ли вы ввели почту и пароль и попробуйте снова";
+            this.isNotificationOpen = true;
+          });
       } else {
         this.notificationHeading = "Введите почту и пароль";
         this.notificationText = "Для входа вы должны заполнить все поля";
