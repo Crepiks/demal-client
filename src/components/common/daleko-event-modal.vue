@@ -199,7 +199,7 @@ export default {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow: auto;
   }
 
   &-gallery {

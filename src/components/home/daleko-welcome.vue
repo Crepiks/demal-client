@@ -1,8 +1,8 @@
 <template>
   <div class="welcome">
     <h1 class="welcome-title">
-      Мероприятия вдали<br />
-      от городской суеты
+      Агригатор загородных<br />
+      мероприятий
     </h1>
     <div class="welcome-button">
       <daleko-button size="large">Как это работает?</daleko-button>

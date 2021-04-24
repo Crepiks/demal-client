@@ -117,7 +117,7 @@ export default {
   flex-direction: column;
   align-items: center;
   border-right: 2px solid #b2bec350;
-  overflow: scroll;
+  overflow: auto;
 
   &-header {
     padding: 30px 0 10px 0;
