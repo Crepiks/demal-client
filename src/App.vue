@@ -46,5 +46,6 @@ export default {
 
 body {
   overflow: auto;
+  overflow-x: hidden;
 }
 </style>

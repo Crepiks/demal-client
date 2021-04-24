@@ -1,5 +1,5 @@
 <template>
-  <div class="how">
+  <section class="how">
     <div class="how-modes">
       <span
         class="how-mode"
@@ -59,7 +59,7 @@
         />
       </div>
     </transition>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -85,6 +85,7 @@ export default {
   position: relative;
   padding: 30px;
   margin: auto;
+  margin-bottom: 200px;
   width: 70%;
   height: 400px;
   box-sizing: border-box;
