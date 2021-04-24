@@ -28,18 +28,26 @@ export default {};
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background-color: #74b9ff30;
+    background-image: url("../../assets/images/auth-background.svg");
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
   }
 
   &-back {
     position: absolute;
     top: 40px;
     left: 40px;
+    padding: 15px 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: $primary;
     text-decoration: none;
     border: none !important;
+    border-radius: 10px;
+    background-color: white;
     cursor: pointer;
     transition: 200ms ease-in-out;
     z-index: 5;
