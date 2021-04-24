@@ -14,7 +14,6 @@ export default {
 
   mounted() {
     if (this.$route.path == "/") {
-      console.log("he");
       this.isHomePage = true;
     } else {
       this.isHomePage = false;
@@ -24,8 +23,6 @@ export default {
   watch: {
     $route() {
       if (this.$route.path == "/") {
-        console.log("he");
-
         this.isHomePage = true;
       } else {
         this.isHomePage = false;
