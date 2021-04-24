@@ -107,8 +107,9 @@ export default {
   width: 100vw;
   height: 80px;
   background-color: transparent;
+  background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 1;
+  z-index: 3;
 
   &-content {
     position: relative;

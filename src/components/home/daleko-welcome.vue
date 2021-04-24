@@ -1,8 +1,9 @@
 <template>
   <div class="welcome">
     <h1 class="welcome-title">
-      Агригатор загородных<br />
-      мероприятий
+      Отдыхай. Работай.<br />
+      Организовывай.<br />
+      На природе
     </h1>
     <div class="welcome-button">
       <daleko-button size="large">Как это работает?</daleko-button>
@@ -28,15 +29,17 @@ export default {
   height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
-  background-image: url("../../assets/images/welcome-image.svg");
-  background-size: 50%;
-  background-position: right bottom 20%;
-  background-repeat: no-repeat;
+  background-color: transparent !important;
 
   &-title {
-    margin: 10% 0 40px;
+    margin: 8% 0 40px;
     color: $main-dark;
     font-size: 70px;
+    z-index: 2;
+  }
+
+  &-button {
+    z-index: 2;
   }
 }
 </style>

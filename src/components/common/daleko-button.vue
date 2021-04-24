@@ -62,7 +62,8 @@ export default {
     font-weight: 600;
 
     &:hover {
-      transform: translate(-3px, 3px);
+      transform: scale(0.97);
+      opacity: 1;
     }
   }
 

@@ -53,7 +53,7 @@ export default {};
     z-index: 5;
 
     &:hover {
-      opacity: 0.6;
+      transform: scale(0.95);
     }
 
     &-icon {
