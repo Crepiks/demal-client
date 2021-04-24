@@ -18,7 +18,7 @@
       <div class="event-gallery">
         <div
           class="event-image"
-          :style="{ backgroundImage: `url(${images[0].imagePath})` }"
+          :style="{ backgroundImage: `url(${activeImage})` }"
         ></div>
         <div class="event-images">
           <div
@@ -26,6 +26,7 @@
             v-for="(image, index) in images"
             :key="index"
             :style="{ backgroundImage: `url(${image.imagePath})` }"
+            @click="activeImage = image.imagePath"
           ></div>
         </div>
       </div>
@@ -103,6 +104,9 @@ export default {
         this.parseDate();
         this.getStatus();
       }
+    },
+    images() {
+      this.activeImage = this.images[0].imagePath;
     },
   },
 
