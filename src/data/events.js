@@ -256,4 +256,40 @@ export default [
     end: "2021-06-09T14:24:01.000Z",
     price: 5500,
   },
+  {
+    id: 5,
+    title: "Меропрятие без изображений",
+    lat: 54.506198,
+    lon: 35.942223,
+    description:
+      "Кимжа - одна из самых красивых деревень России. Двух дневная экскурсия с проживанием - это отличная возможность полюбоавиться природой и прочувствовать настоящую русскую деревню.",
+    participants: [
+      {
+        id: 1,
+        firstName: "Саяжан",
+        lastName: "Онласын",
+        email: "sayazhan@mail.ru",
+      },
+      {
+        id: 2,
+        firstName: "Аружан",
+        lastName: "Бесекова",
+        email: "aryka2003@mail.ru",
+      },
+      {
+        id: 3,
+        firstName: "Тимур",
+        lastName: "Сейткалиев",
+        email: "tima.director@mail.ru",
+      },
+    ],
+    creator: {
+      firstName: "Арина",
+      lastName: "Асаковна",
+      email: "arina@mail.ru",
+    },
+    start: "2021-06-07T14:24:01.000Z",
+    end: "2021-06-09T14:24:01.000Z",
+    price: 5500,
+  },
 ];

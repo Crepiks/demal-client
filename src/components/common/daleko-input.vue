@@ -31,8 +31,7 @@ export default {
       type: String,
     },
     maxlength: {
-      type: String,
-      default: "255",
+      type: Number,
     },
   },
 
