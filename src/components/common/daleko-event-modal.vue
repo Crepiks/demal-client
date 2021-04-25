@@ -198,9 +198,8 @@ export default {
             };
 
             payDonation(eventId, data)
-              .then((res) => console.log(res))
-              .catch((err) => {
-                console.log(err);
+              .then(() => (this.participating = true))
+              .catch(() => {
                 this.notificationHeading = "Что-то пошло не так";
                 this.notificationText =
                   "Проверьте подключение к интернету и попробуйте перезагрузить страницу";
@@ -433,7 +432,6 @@ export default {
 
     &-creator {
       padding: 10px 20px 10px 15px;
-      width: 200px;
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -468,7 +466,6 @@ export default {
   &-participant {
     margin-bottom: 10px;
     padding: 10px 20px 10px 15px;
-    width: 200px;
     display: flex;
     flex-direction: row;
     justify-content: center;

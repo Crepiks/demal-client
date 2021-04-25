@@ -107,10 +107,12 @@ export default {
           register(credentials)
             .then((res) => {
               const user = {
+                id: res.data.user.id,
                 firstName: res.data.user.firstName,
                 lastName: res.data.user.lastName,
                 email: res.data.user.email,
                 token: res.data.auth.token,
+                selfEmployedId: res.data.user.selfEmployedId,
               };
               localStorage.setItem("user", JSON.stringify(user));
               this.$router.push("/events");

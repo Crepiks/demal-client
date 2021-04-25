@@ -17,90 +17,65 @@
         >
       </div>
     </div>
-    <div
-      v-if="participatingEvents[0].title || createdEvents[0].title"
-      class="list-cards-container"
-    >
-      <div class="list-cards" v-if="listMode == 1">
-        <div class="list-cards-container" v-if="participatingEvents[0]">
-          <daleko-event-card
-            class="list-card"
-            v-for="event in participatingEvents"
-            :key="event.id"
-            :title="event.title"
-            :description="event.description"
-            :price="event.price"
-            :path="
-              event.images
-                ? event.images[0].path
-                : 'https://sun9-65.userapi.com/impg/kvt9TuPNUBaDf2RYAL89yD1-GAKG0BWvOw4v-g/Vqkgj4rIhqk.jpg?size=2560x1710&quality=96&sign=2adb41c5b3357682d825e4365a7ed21b&type=album'
-            "
-            @mouseenter="$emit('change-active-event', event.id)"
-            @open-map="$emit('open-map')"
-          />
-        </div>
-        <div v-else class="list-empty">
-          <img
-            src="@/assets/images/list-empty.svg"
-            alt="Нет мероприятий"
-            class="list-empty-image"
-          />
-          <span class="list-empty-title"
-            >Вы пока не учавствуете ни в одном мероприятии. Вы можете найти их
-            <router-link class="list-empty-title-link" to="/events"
-              >здесь</router-link
-            ></span
-          >
-        </div>
+    <div class="list-cards" v-if="listMode == 1">
+      <div class="list-cards-container" v-if="participatingEvents[0]">
+        <daleko-event-card
+          class="list-card"
+          v-for="event in participatingEvents"
+          :key="event.id"
+          :title="event.title"
+          :description="event.description"
+          :price="event.price"
+          :path="
+            event.images
+              ? event.images[0].path
+              : 'https://sun9-65.userapi.com/impg/kvt9TuPNUBaDf2RYAL89yD1-GAKG0BWvOw4v-g/Vqkgj4rIhqk.jpg?size=2560x1710&quality=96&sign=2adb41c5b3357682d825e4365a7ed21b&type=album'
+          "
+          @mouseenter="$emit('change-active-event', event.id)"
+          @open-map="$emit('open-map')"
+        />
       </div>
-      <div class="list-cards" v-else-if="listMode == 2">
-        <div class="list-cards-container" v-if="createdEvents[0]">
-          <daleko-event-card
-            class="list-card"
-            v-for="event in createdEvents"
-            :key="event.id"
-            :title="event.title"
-            :description="event.description"
-            :price="event.price"
-            :path="event.images[0].path"
-            @mouseenter="$emit('change-active-event', event.id)"
-            @open-map="$emit('open-map')"
-          />
-        </div>
-        <div v-else class="list-empty">
-          <img
-            src="@/assets/images/list-empty.svg"
-            alt="Нет мероприятий"
-            class="list-empty-image"
-          />
-          <span class="list-empty-title"
-            >Вы пока не организуете ни одно мероприятие. Вы можете создать его
-            <router-link class="list-empty-title-link" to="/event"
-              >здесь</router-link
-            ></span
-          >
-        </div>
+      <div v-else class="list-empty">
+        <img
+          src="@/assets/images/list-empty.svg"
+          alt="Нет мероприятий"
+          class="list-empty-image"
+        />
+        <span class="list-empty-title"
+          >Вы пока не учавствуете ни в одном мероприятии. Вы можете найти их
+          <router-link class="list-empty-title-link" to="/events"
+            >здесь</router-link
+          ></span
+        >
       </div>
     </div>
-    <div v-else class="list-skeletons">
-      <PuSkeleton
-        class="list-skeleton"
-        :count="1"
-        width="100%"
-        height="130px"
-      ></PuSkeleton>
-      <PuSkeleton
-        class="list-skeleton"
-        :count="1"
-        width="100%"
-        height="130px"
-      ></PuSkeleton>
-      <PuSkeleton
-        class="list-skeleton"
-        :count="1"
-        width="100%"
-        height="130px"
-      ></PuSkeleton>
+    <div class="list-cards" v-else-if="listMode == 2">
+      <div class="list-cards-container" v-if="createdEvents[0]">
+        <daleko-event-card
+          class="list-card"
+          v-for="event in createdEvents"
+          :key="event.id"
+          :title="event.title"
+          :description="event.description"
+          :price="event.price"
+          :path="event.images[0].path"
+          @mouseenter="$emit('change-active-event', event.id)"
+          @open-map="$emit('open-map')"
+        />
+      </div>
+      <div v-else class="list-empty">
+        <img
+          src="@/assets/images/list-empty.svg"
+          alt="Нет мероприятий"
+          class="list-empty-image"
+        />
+        <span class="list-empty-title"
+          >Вы пока не организуете ни одно мероприятие. Вы можете создать его
+          <router-link class="list-empty-title-link" to="/event"
+            >здесь</router-link
+          ></span
+        >
+      </div>
     </div>
   </div>
 </template>

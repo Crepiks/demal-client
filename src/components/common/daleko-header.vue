@@ -13,7 +13,7 @@
           <router-link class="header-user-link" to="/self-employed"
             >Стать самозанятым</router-link
           >
-          <router-link class="header-user-link" to=""
+          <router-link class="header-user-link" to="/events/add"
             >Создать мероприятие</router-link
           >
           <span class="header-user-link header-user-danger" @click="logout"

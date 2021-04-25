@@ -8,6 +8,7 @@ import Register from "@/views/Register.vue";
 import Events from "@/views/Events.vue";
 import UserEvents from "@/views/UserEvents.vue";
 import SelfEmployed from "@/views/SelfEmployed.vue";
+import AddEvent from "@/views/AddEvent.vue";
 
 Vue.use(VueRouter);
 
@@ -56,6 +57,16 @@ const routes = [
               needAuth: true,
             },
           },
+          {
+            path: "/events/add",
+            name: "add-event",
+            component: AddEvent,
+            meta: {
+              title: "Создать мероприятие",
+              needAuth: true,
+              needSelfEmployedRegister: true,
+            },
+          },
         ],
       },
     ],
@@ -91,6 +102,18 @@ router.beforeEach((to, from, next) => {
     if (!JSON.parse(localStorage.getItem("user"))) {
       next({
         path: "/login",
+        query: { redirect: to.fullPath },
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+  if (to.matched.some((record) => record.meta.needSelfEmployedRegister)) {
+    if (!JSON.parse(localStorage.getItem("user")).selfEmployedId) {
+      next({
+        path: "/self-employed",
         query: { redirect: to.fullPath },
       });
     } else {
