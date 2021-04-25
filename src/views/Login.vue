@@ -23,7 +23,7 @@
       class="auth-input"
     />
     <div class="auth-button">
-      <daleko-button type="submit">Войти</daleko-button>
+      <daleko-button :isLoading="isLoading" type="submit">Войти</daleko-button>
       <router-link to="/register" class="auth-link"
         >У меня нет аккаунта</router-link
       >
@@ -54,6 +54,7 @@ export default {
       notificationHeading: "",
       notificationText: "",
       notificationStatus: "error",
+      isLoading: false,
     };
   },
 
@@ -64,6 +65,7 @@ export default {
           email: this.email.trim(),
           password: this.password.trim(),
         };
+        this.isLoading = true;
         login(credentials)
           .then((res) => {
             const user = {
@@ -82,6 +84,9 @@ export default {
             this.notificationText =
               "Проверьте правильно ли вы ввели почту и пароль и попробуйте снова";
             this.isNotificationOpen = true;
+          })
+          .finally(() => {
+            this.isLoading = false;
           });
       } else {
         this.notificationHeading = "Введите почту и пароль";

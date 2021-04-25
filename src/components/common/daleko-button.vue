@@ -9,7 +9,8 @@
       'button-rounded': borderRadius == 'rounded',
     }"
   >
-    <slot></slot>
+    <slot v-if="!isLoading"></slot>
+    <div v-else class="loader loader-arc"></div>
   </button>
 </template>
 
@@ -27,6 +28,10 @@ export default {
     borderRadius: {
       type: String,
       default: "medium",
+    },
+    isLoading: {
+      type: Boolean,
+      default: false,
     },
   },
 };
@@ -75,5 +80,34 @@ export default {
   &-rounded {
     border-radius: 50px;
   }
+}
+
+.loader {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.loader:after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  height: 12px;
+  width: 12px;
+  display: block;
+  border-radius: 50%;
+  background: $primary;
+}
+
+.loader-arc {
+  animation-name: spin;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  background-image: linear-gradient(270deg, $white 20%, transparent 50%),
+    linear-gradient(180deg, $primary 50%, $white 50%);
 }
 </style>

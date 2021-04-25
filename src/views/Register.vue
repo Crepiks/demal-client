@@ -47,7 +47,9 @@
       class="auth-input"
     />
     <div class="auth-button">
-      <daleko-button type="submit">Зарегистрироваться</daleko-button>
+      <daleko-button :isLoading="isLoading" type="submit"
+        >Зарегистрироваться</daleko-button
+      >
       <router-link to="/login" class="auth-link">Есть аккаунт</router-link>
     </div>
   </daleko-auth>
@@ -79,6 +81,7 @@ export default {
       notificationHeading: "",
       notificationText: "",
       notificationStatus: "error",
+      isLoading: false,
     };
   },
 
@@ -99,6 +102,8 @@ export default {
             password: this.password.trim(),
           };
 
+          this.isLoading = true;
+
           register(credentials)
             .then((res) => {
               const user = {
@@ -115,6 +120,9 @@ export default {
               this.notificationText =
                 "Проверьте ваше подключение к интернету и попробуйте еще раз";
               this.isNotificationOpen = true;
+            })
+            .finally(() => {
+              this.isLoading = false;
             });
         } else {
           this.notificationHeading = "Пароли не совпадают";

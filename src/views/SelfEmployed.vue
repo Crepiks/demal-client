@@ -60,7 +60,9 @@
           class="self-employed-input"
         />
         <div class="self-employed-button">
-          <daleko-button @click="handleINN">Далее</daleko-button>
+          <daleko-button :isLoading="isLoading" @click="handleINN"
+            >Далее</daleko-button
+          >
         </div>
       </div>
       <div
@@ -165,6 +167,7 @@ export default {
       cardName: "",
       cardMonth: "",
       cardYear: "",
+      isLoading: false,
     };
   },
 
@@ -203,6 +206,7 @@ export default {
             };
 
             const userId = JSON.parse(localStorage.getItem("user")).id;
+            this.isLoading = true;
 
             addSelfEmployed(userData, userId)
               .then(() => {
@@ -224,6 +228,9 @@ export default {
                 this.notificationText =
                   "Проверьте подключение к интернету и попробуйте перезагрузить страницу";
                 this.isNotificationOpen = true;
+              })
+              .finally(() => {
+                this.isLoading = false;
               });
           } else {
             this.notificationHeading = "Неверный формат номер телефона";
