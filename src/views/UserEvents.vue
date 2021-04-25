@@ -1,7 +1,14 @@
 <template>
   <div class="my-events-page">
+    <daleko-notification
+      :isActive="isNotificationOpen"
+      :heading="notificationHeading"
+      :text="notificationText"
+      @close-notification="isNotificationOpen = false"
+      :status="notificationStatus"
+    />
     <daleko-user-events-list
-      :participatedEvents="participatedEvents"
+      :participatingEvents="participatingEvents"
       :createdEvents="createdEvents"
       @change-active-event="changeActiveEvent"
       @open-map="isMapOpen = true"
@@ -37,7 +44,8 @@ import dalekoUserEventsList from "@/components/user-events/daleko-user-events-li
 import dalekoEventInfo from "@/components/events/daleko-event-info.vue";
 import dalekoEventMap from "@/components/events/daleko-event-map.vue";
 import dalekoEventModal from "@/components/common/daleko-event-modal.vue";
-import userEvents from "@/data/userEvents.js";
+import dalekoNotification from "@/components/common/daleko-notification.vue";
+import { getUser } from "@/requests/users.js";
 
 export default {
   components: {
@@ -45,12 +53,17 @@ export default {
     "daleko-event-info": dalekoEventInfo,
     "daleko-event-map": dalekoEventMap,
     "daleko-event-modal": dalekoEventModal,
+    "daleko-notification": dalekoNotification,
   },
 
   data() {
     return {
-      participatedEvents: userEvents.participatedEvents,
-      createdEvents: userEvents.createdEvents,
+      participatingEvents: [
+        { title: "", description: "", images: [{ path: "" }], price: 0 },
+      ],
+      createdEvents: [
+        { title: "", description: "", images: [{ path: "" }], price: 0 },
+      ],
       activeEvent: {
         title: "",
         description: "",
@@ -73,12 +86,31 @@ export default {
       },
       isMapOpen: false,
       isEventModalOpen: false,
+      isNotificationOpen: false,
+      notificationHeading: "",
+      notificationText: "",
+      notificationStatus: "error",
     };
+  },
+
+  mounted() {
+    const userId = JSON.parse(localStorage.getItem("user")).id;
+    getUser(userId)
+      .then((res) => {
+        this.participatingEvents = res.data.user.participatingEvents;
+        this.createdEvents = res.data.user.createdEvents;
+      })
+      .catch(() => {
+        this.notificationHeading = "Что-то пошло не так";
+        this.notificationText =
+          "Проверьте подключение к интернету и попробуйте перезагрузить страницу";
+        this.isNotificationOpen = true;
+      });
   },
 
   methods: {
     changeActiveEvent(eventId) {
-      const events = this.participatedEvents.concat(this.createdEvents);
+      const events = this.participatingEvents.concat(this.createdEvents);
       events.forEach((event) => {
         if (event.id == eventId) {
           this.activeEvent.title = event.title;

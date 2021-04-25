@@ -16,6 +16,9 @@ const settings = {
 
 Vue.use(YandexMaps, settings);
 
+import Skeleton from "vue-loading-skeleton";
+Vue.use(Skeleton);
+
 new Vue({
   router,
   store,

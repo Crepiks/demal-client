@@ -67,6 +67,7 @@ export default {
         login(credentials)
           .then((res) => {
             const user = {
+              id: res.data.user.id,
               firstName: res.data.user.firstName,
               lastName: res.data.user.lastName,
               email: res.data.user.email,
