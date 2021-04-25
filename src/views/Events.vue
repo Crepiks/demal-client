@@ -114,17 +114,19 @@ export default {
       });
 
     const userId = JSON.parse(localStorage.getItem("user")).id;
-    getUser(userId)
-      .then((res) => {
-        this.participatingEvents = res.data.user.participatingEvents;
-        this.createdEvents = res.data.user.createdEvents;
-      })
-      .catch(() => {
-        this.notificationHeading = "Что-то пошло не так";
-        this.notificationText =
-          "Проверьте подключение к интернету и попробуйте перезагрузить страницу";
-        this.isNotificationOpen = true;
-      });
+    if (userId) {
+      getUser(userId)
+        .then((res) => {
+          this.participatingEvents = res.data.user.participatingEvents;
+          this.createdEvents = res.data.user.createdEvents;
+        })
+        .catch(() => {
+          this.notificationHeading = "Что-то пошло не так";
+          this.notificationText =
+            "Проверьте подключение к интернету и попробуйте перезагрузить страницу";
+          this.isNotificationOpen = true;
+        });
+    }
   },
 
   methods: {
