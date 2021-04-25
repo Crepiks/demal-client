@@ -27,10 +27,12 @@
       @close-map="isMapOpen = false"
     />
     <daleko-event-modal
+      :id="activeEvent.id"
       :title="activeEvent.title"
       :description="activeEvent.description"
       :creator="activeEvent.creator"
       :participants="activeEvent.participants"
+      :userEvents="participatingEvents.concat(createdEvents)"
       :isEventModalOpen="isEventModalOpen"
       :images="activeEvent.images"
       @close-event-modal="isEventModalOpen = false"
@@ -45,6 +47,7 @@ import dalekoEventMap from "@/components/events/daleko-event-map.vue";
 import dalekoEventModal from "@/components/common/daleko-event-modal.vue";
 import dalekoNotification from "@/components/common/daleko-notification.vue";
 import { getEvents } from "@/requests/events.js";
+import { getUser } from "@/requests/users.js";
 
 export default {
   components: {
@@ -58,9 +61,16 @@ export default {
   data() {
     return {
       events: [
-        { title: "", description: "", images: [{ path: "" }], price: 0 },
+        {
+          id: 0,
+          title: "",
+          description: "",
+          images: [{ path: "" }],
+          price: 0,
+        },
       ],
       activeEvent: {
+        id: 0,
         title: "",
         description: "",
         images: [{ path: "" }],
@@ -86,6 +96,8 @@ export default {
       notificationHeading: "",
       notificationText: "",
       notificationStatus: "error",
+      participatingEvents: [],
+      createdEvents: [],
     };
   },
 
@@ -93,6 +105,19 @@ export default {
     getEvents()
       .then((res) => {
         this.events = res.data.events;
+      })
+      .catch(() => {
+        this.notificationHeading = "Что-то пошло не так";
+        this.notificationText =
+          "Проверьте подключение к интернету и попробуйте перезагрузить страницу";
+        this.isNotificationOpen = true;
+      });
+
+    const userId = JSON.parse(localStorage.getItem("user")).id;
+    getUser(userId)
+      .then((res) => {
+        this.participatingEvents = res.data.user.participatingEvents;
+        this.createdEvents = res.data.user.createdEvents;
       })
       .catch(() => {
         this.notificationHeading = "Что-то пошло не так";
@@ -114,10 +139,12 @@ export default {
           this.activeEvent.creator.firstName = event.creator.firstName;
           this.activeEvent.creator.email = event.creator.email;
           this.activeEvent.participants = event.participants;
+          this.activeEvent.id = event.id;
         }
       });
     },
     clearActiveEvent() {
+      this.activeEvent.id = 0;
       this.activeEvent.title = "";
       this.activeEvent.description = "";
       this.activeEvent.images = [{ path: "" }];

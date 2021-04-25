@@ -1,5 +1,12 @@
 <template>
   <div class="event" :class="{ 'event-active': isEventModalOpen }">
+    <daleko-notification
+      :isActive="isNotificationOpen"
+      :heading="notificationHeading"
+      :text="notificationText"
+      @close-notification="isNotificationOpen = false"
+      :status="notificationStatus"
+    />
     <div class="event-close" @click="$emit('close-event-modal')">
       <i class="bx bx-x event-close-icon"></i>
     </div>
@@ -46,7 +53,7 @@
         </div>
       </div>
     </div>
-    <div class="event-payment">
+    <div v-if="!participating" class="event-payment">
       <h2 class="event-payment-title">Оплата взноса</h2>
       <daleko-input
         title="Номер карты"
@@ -79,7 +86,17 @@
           class="event-payment-input event-payment-input-short"
         />
       </div>
-      <daleko-button class="event-payment-button">Оплатить взнос</daleko-button>
+      <daleko-button
+        :isLoading="isLoading"
+        @click="handlePayment"
+        class="event-payment-button"
+        >Оплатить взнос</daleko-button
+      >
+    </div>
+    <div v-else class="event-participating">
+      <span class="event-participating-title"
+        >Вы можете посмотреть это мероприятие в ваших мероприятиях</span
+      >
     </div>
   </div>
 </template>
@@ -87,9 +104,15 @@
 <script>
 import dalekoInput from "@/components/common/daleko-input.vue";
 import dalekoButton from "@/components/common/daleko-button.vue";
+import dalekoNotification from "@/components/common/daleko-notification.vue";
+import { payDonation } from "@/requests/payment.js";
 
 export default {
   props: {
+    id: {
+      type: Number,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
@@ -114,24 +137,115 @@ export default {
       type: Array,
       required: true,
     },
+    userEvents: {
+      type: Array,
+    },
   },
 
   components: {
     "daleko-input": dalekoInput,
     "daleko-button": dalekoButton,
+    "daleko-notification": dalekoNotification,
   },
 
   data() {
     return {
       activeImage: "",
-      cardNumber: null,
-      cardName: null,
-      cardMonth: null,
-      cardYear: null,
+      cardNumber: "",
+      cardName: "",
+      cardMonth: "",
+      cardYear: "",
+      isNotificationOpen: false,
+      notificationHeading: "",
+      notificationText: "",
+      notificationStatus: "error",
+      isLoading: false,
+      participating: false,
     };
   },
 
+  mounted() {
+    if (this.userEvents) {
+      this.userEvents.forEach((event) => {
+        if (this.id == event.id) {
+          this.participating = true;
+        }
+      });
+    }
+  },
+
+  methods: {
+    handlePayment() {
+      if (
+        this.cardNumber.trim() &&
+        this.cardName.trim() &&
+        this.cardMonth.trim() &&
+        this.cardYear.trim()
+      ) {
+        console.log();
+        if (this.cardNumber.trim().length == 16) {
+          if (
+            this.cardMonth.trim().length == 2 &&
+            this.cardYear.trim().length == 2 &&
+            this.cardMonth.trim().length < 13 &&
+            this.cardMonth.trim().length > 0
+          ) {
+            this.isLoading = true;
+
+            const eventId = this.id;
+            const data = {
+              participantId: JSON.parse(localStorage.getItem("user")).id,
+            };
+
+            payDonation(eventId, data)
+              .then((res) => console.log(res))
+              .catch((err) => {
+                console.log(err);
+                this.notificationHeading = "Что-то пошло не так";
+                this.notificationText =
+                  "Проверьте подключение к интернету и попробуйте перезагрузить страницу";
+                this.isNotificationOpen = true;
+              })
+              .finally(() => {
+                this.isLoading = false;
+              });
+          } else {
+            this.notificationHeading = "Неверный формат даты";
+            this.notificationText = "Проверьте правильность введенной даты";
+            this.isNotificationOpen = true;
+          }
+        } else {
+          this.notificationHeading = "Неверный формат номера карты";
+          this.notificationText = "Номер карты должен состоять из 16 цифр";
+          this.isNotificationOpen = true;
+        }
+      } else {
+        this.notificationHeading = "Заполните все поля";
+        this.notificationText =
+          "Для оплаты взноса вы должны заполнить все поля";
+        this.isNotificationOpen = true;
+      }
+    },
+  },
+
   watch: {
+    userEvents() {
+      if (this.userEvents) {
+        this.participating = false;
+        this.userEvents.forEach((event) => {
+          if (this.id == event.id) {
+            this.participating = true;
+          }
+        });
+      }
+    },
+
+    cardName() {
+      if (this.cardName) {
+        this.cardName = this.cardName.toUpperCase();
+      }
+    },
+
     images() {
       if (this.images) {
         this.activeImage = this.images[0].path;
@@ -414,6 +528,30 @@ export default {
         font-size: 22px;
         opacity: 0.6;
       }
+    }
+  }
+
+  &-participating {
+    margin-left: 40px;
+    padding: 30px;
+    width: 30%;
+    height: 420px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #c3c3c350;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    &-title {
+      width: 70%;
+      color: $main-dark;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 140%;
+      text-align: center;
     }
   }
 }

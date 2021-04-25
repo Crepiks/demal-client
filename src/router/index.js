@@ -26,11 +26,17 @@ const routes = [
             path: "/",
             name: "Home",
             component: Home,
+            meta: {
+              title: "Daleko - вдали от городской суеты",
+            },
           },
           {
             path: "/events",
-            name: "houses",
+            name: "events",
             component: Events,
+            meta: {
+              title: "Мероприятия",
+            },
           },
           {
             path: "/my-events",
@@ -58,11 +64,17 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login,
+    meta: {
+      title: "Вход",
+    },
   },
   {
     path: "/register",
     name: "register",
     component: Register,
+    meta: {
+      title: "Регистрация",
+    },
   },
 ];
 

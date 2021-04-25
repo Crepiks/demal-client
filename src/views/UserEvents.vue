@@ -28,6 +28,7 @@
       @close-map="isMapOpen = false"
     />
     <daleko-event-modal
+      :id="activeEvent.id"
       :title="activeEvent.title"
       :description="activeEvent.description"
       :creator="activeEvent.creator"
@@ -59,12 +60,19 @@ export default {
   data() {
     return {
       participatingEvents: [
-        { title: "", description: "", images: [{ path: "" }], price: 0 },
+        {
+          id: 0,
+          title: "",
+          description: "",
+          images: [{ path: "" }],
+          price: 0,
+        },
       ],
       createdEvents: [
         { title: "", description: "", images: [{ path: "" }], price: 0 },
       ],
       activeEvent: {
+        id: 0,
         title: "",
         description: "",
         images: [{ path: "" }],
@@ -121,11 +129,13 @@ export default {
           this.activeEvent.creator.firstName = event.creator.firstName;
           this.activeEvent.creator.email = event.creator.email;
           this.activeEvent.participants = event.participants;
+          this.activeEvent.id = event.id;
         }
       });
     },
 
     clearActiveEvent() {
+      this.activeEvent.id = 0;
       this.activeEvent.title = "";
       this.activeEvent.description = "";
       this.activeEvent.images = [];
