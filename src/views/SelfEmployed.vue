@@ -7,7 +7,7 @@
       @close-notification="isNotificationOpen = false"
       :status="notificationStatus"
     />
-    <div v-if="!userINN" class="self-empoyed-slider">
+    <div v-if="!isUserRegistered" class="self-empoyed-slider">
       <div v-if="activeSlide == 1" class="self-employed-slide">
         <img
           src="@/assets/images/self-employed.svg"
@@ -143,6 +143,7 @@ export default {
 
   data() {
     return {
+      isUserRegistered: false,
       userINN: "",
       firstName: "",
       lastName: "",
@@ -162,8 +163,8 @@ export default {
 
   mounted() {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      this.userINN = user.INN;
+    if (user.INN) {
+      this.isUserRegistered = true;
     }
   },
 

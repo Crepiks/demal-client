@@ -54,7 +54,7 @@ export default {
       activeEvent: {
         title: "",
         description: "",
-        images: [{ imagePath: "" }],
+        images: [{ path: "" }],
         coords: [0, 0],
         date: ["", ""],
         creator: {
@@ -69,6 +69,7 @@ export default {
             email: "",
           },
         ],
+        price: 0,
       },
       isMapOpen: false,
       isEventModalOpen: false,

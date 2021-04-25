@@ -13,9 +13,9 @@
       :title="event.title"
       :description="event.description"
       :price="event.price"
-      :imagePath="
+      :path="
         event.images
-          ? event.images[0].imagePath
+          ? event.images[0].path
           : 'https://sun9-65.userapi.com/impg/kvt9TuPNUBaDf2RYAL89yD1-GAKG0BWvOw4v-g/Vqkgj4rIhqk.jpg?size=2560x1710&quality=96&sign=2adb41c5b3357682d825e4365a7ed21b&type=album'
       "
       @mouseenter="$emit('change-active-event', event.id)"

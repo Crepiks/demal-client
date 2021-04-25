@@ -1,5 +1,12 @@
 <template>
   <div class="events-page">
+    <daleko-notification
+      :isActive="isNotificationOpen"
+      :heading="notificationHeading"
+      :text="notificationText"
+      @close-notification="isNotificationOpen = false"
+      :status="notificationStatus"
+    />
     <daleko-events-list
       :events="events"
       @change-active-event="changeActiveEvent"
@@ -36,22 +43,27 @@ import dalekoEventsList from "@/components/events/daleko-events-list.vue";
 import dalekoEventInfo from "@/components/events/daleko-event-info.vue";
 import dalekoEventMap from "@/components/events/daleko-event-map.vue";
 import dalekoEventModal from "@/components/common/daleko-event-modal.vue";
-import events from "@/data/events.js";
+import dalekoNotification from "@/components/common/daleko-notification.vue";
+import { getEvents } from "@/requests/events.js";
+
 export default {
   components: {
     "daleko-events-list": dalekoEventsList,
     "daleko-event-info": dalekoEventInfo,
     "daleko-event-map": dalekoEventMap,
     "daleko-event-modal": dalekoEventModal,
+    "daleko-notification": dalekoNotification,
   },
 
   data() {
     return {
-      events: events,
+      events: [
+        { title: "", description: "", images: [{ path: "" }], price: 0 },
+      ],
       activeEvent: {
         title: "",
         description: "",
-        images: [{ imagePath: "" }],
+        images: [{ path: "" }],
         coords: [0, 0],
         date: ["", ""],
         creator: {
@@ -66,10 +78,28 @@ export default {
             email: "",
           },
         ],
+        price: 0,
       },
       isMapOpen: false,
       isEventModalOpen: false,
+      isNotificationOpen: false,
+      notificationHeading: "",
+      notificationText: "",
+      notificationStatus: "error",
     };
+  },
+
+  mounted() {
+    getEvents()
+      .then((res) => {
+        this.events = res.data.events;
+      })
+      .catch(() => {
+        this.notificationHeading = "Что-то пошло не так";
+        this.notificationText =
+          "Проверьте подключение к интернету и попробуйте перезагрузить страницу";
+        this.isNotificationOpen = true;
+      });
   },
 
   methods: {
@@ -90,7 +120,7 @@ export default {
     clearActiveEvent() {
       this.activeEvent.title = "";
       this.activeEvent.description = "";
-      this.activeEvent.images = [{ imagePath: "" }];
+      this.activeEvent.images = [{ path: "" }];
       this.activeEvent.coords = [0, 0];
       this.activeEvent.date = ["", ""];
       this.activeEvent.creator = { firstName: "", lastName: "", email: "" };

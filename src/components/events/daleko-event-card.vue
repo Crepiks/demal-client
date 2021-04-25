@@ -1,9 +1,6 @@
 <template>
   <div class="event-card" @mouseenter="$emit('mouseenter')">
-    <div
-      class="event-image"
-      :style="{ backgroundImage: `url(${imagePath})` }"
-    ></div>
+    <div class="event-image" :style="{ backgroundImage: `url(${path})` }"></div>
     <div class="event-text">
       <h3 class="event-title">{{ title }}</h3>
       <p class="event-description">{{ description.slice(0, 50) }}...</p>
@@ -38,7 +35,7 @@ export default {
       type: Number,
       required: true,
     },
-    imagePath: {
+    path: {
       type: String,
       required: true,
     },

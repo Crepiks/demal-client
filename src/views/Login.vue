@@ -71,7 +71,6 @@ export default {
               lastName: res.data.user.lastName,
               email: res.data.user.email,
               token: res.data.auth.token,
-              INN: "123456789012",
             };
             localStorage.setItem("user", JSON.stringify(user));
             this.$router.push("/events");

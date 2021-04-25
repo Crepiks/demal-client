@@ -25,8 +25,8 @@
             class="event-preview"
             v-for="(image, index) in images"
             :key="index"
-            :style="{ backgroundImage: `url(${image.imagePath})` }"
-            @click="activeImage = image.imagePath"
+            :style="{ backgroundImage: `url(${image.path})` }"
+            @click="activeImage = image.path"
           ></div>
         </div>
       </div>
@@ -109,41 +109,41 @@ export default {
     },
     images() {
       if (this.images) {
-        this.activeImage = this.images[0].imagePath;
+        this.activeImage = this.images[0].path;
       } else {
         this.activeImage =
           "https://sun9-65.userapi.com/impg/kvt9TuPNUBaDf2RYAL89yD1-GAKG0BWvOw4v-g/Vqkgj4rIhqk.jpg?size=2560x1710&quality=96&sign=2adb41c5b3357682d825e4365a7ed21b&type=album";
         this.images = [
           {
-            imagePath:
+            path:
               "https://sun9-65.userapi.com/impg/kvt9TuPNUBaDf2RYAL89yD1-GAKG0BWvOw4v-g/Vqkgj4rIhqk.jpg?size=2560x1710&quality=96&sign=2adb41c5b3357682d825e4365a7ed21b&type=album",
           },
           {
-            imagePath:
+            path:
               "https://sun9-65.userapi.com/impg/kvt9TuPNUBaDf2RYAL89yD1-GAKG0BWvOw4v-g/Vqkgj4rIhqk.jpg?size=2560x1710&quality=96&sign=2adb41c5b3357682d825e4365a7ed21b&type=album",
           },
           {
-            imagePath:
+            path:
               "https://sun9-65.userapi.com/impg/kvt9TuPNUBaDf2RYAL89yD1-GAKG0BWvOw4v-g/Vqkgj4rIhqk.jpg?size=2560x1710&quality=96&sign=2adb41c5b3357682d825e4365a7ed21b&type=album",
           },
           {
-            imagePath:
+            path:
               "https://sun9-65.userapi.com/impg/kvt9TuPNUBaDf2RYAL89yD1-GAKG0BWvOw4v-g/Vqkgj4rIhqk.jpg?size=2560x1710&quality=96&sign=2adb41c5b3357682d825e4365a7ed21b&type=album",
           },
           {
-            imagePath:
+            path:
               "https://sun9-65.userapi.com/impg/kvt9TuPNUBaDf2RYAL89yD1-GAKG0BWvOw4v-g/Vqkgj4rIhqk.jpg?size=2560x1710&quality=96&sign=2adb41c5b3357682d825e4365a7ed21b&type=album",
           },
           {
-            imagePath:
+            path:
               "https://sun9-65.userapi.com/impg/kvt9TuPNUBaDf2RYAL89yD1-GAKG0BWvOw4v-g/Vqkgj4rIhqk.jpg?size=2560x1710&quality=96&sign=2adb41c5b3357682d825e4365a7ed21b&type=album",
           },
           {
-            imagePath:
+            path:
               "https://sun9-65.userapi.com/impg/kvt9TuPNUBaDf2RYAL89yD1-GAKG0BWvOw4v-g/Vqkgj4rIhqk.jpg?size=2560x1710&quality=96&sign=2adb41c5b3357682d825e4365a7ed21b&type=album",
           },
           {
-            imagePath:
+            path:
               "https://sun9-65.userapi.com/impg/kvt9TuPNUBaDf2RYAL89yD1-GAKG0BWvOw4v-g/Vqkgj4rIhqk.jpg?size=2560x1710&quality=96&sign=2adb41c5b3357682d825e4365a7ed21b&type=album",
           },
         ];

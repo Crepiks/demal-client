@@ -26,7 +26,7 @@
           :title="event.title"
           :description="event.description"
           :price="event.price"
-          :imagePath="event.images[0].imagePath"
+          :path="event.images[0].path"
           @mouseenter="$emit('change-active-event', event.id)"
           @open-map="$emit('open-map')"
         />
@@ -54,7 +54,7 @@
           :title="event.title"
           :description="event.description"
           :price="event.price"
-          :imagePath="event.images[0].imagePath"
+          :path="event.images[0].path"
           @mouseenter="$emit('change-active-event', event.id)"
           @open-map="$emit('open-map')"
         />

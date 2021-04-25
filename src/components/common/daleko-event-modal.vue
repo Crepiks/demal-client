@@ -14,8 +14,8 @@
             class="event-preview"
             v-for="(image, index) in images"
             :key="index"
-            :style="{ backgroundImage: `url(${image.imagePath})` }"
-            @click="activeImage = image.imagePath"
+            :style="{ backgroundImage: `url(${image.path})` }"
+            @click="activeImage = image.path"
           ></div>
         </div>
       </div>
@@ -135,7 +135,7 @@ export default {
 
   watch: {
     images() {
-      this.activeImage = this.images[0].imagePath;
+      this.activeImage = this.images[0].path;
     },
   },
 };
