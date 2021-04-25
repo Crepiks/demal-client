@@ -7,6 +7,7 @@ import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
 import Events from "@/views/Events.vue";
 import UserEvents from "@/views/UserEvents.vue";
+import SelfEmployed from "@/views/SelfEmployed.vue";
 
 Vue.use(VueRouter);
 
@@ -35,6 +36,11 @@ const routes = [
             path: "/my-events",
             name: "my-events",
             component: UserEvents,
+          },
+          {
+            path: "/self-employed",
+            name: "self-employed",
+            component: SelfEmployed,
           },
         ],
       },

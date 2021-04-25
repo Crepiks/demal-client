@@ -10,6 +10,9 @@
           <router-link class="header-user-link" to="/my-events"
             >Мои мероприятия</router-link
           >
+          <router-link class="header-user-link" to="/self-employed"
+            >Стать самозанятым</router-link
+          >
           <router-link class="header-user-link" to=""
             >Создать мероприятие</router-link
           >

@@ -8,7 +8,7 @@
       :placeholder="placeholder"
       :value="value"
       @input="updateValue($event.target.value)"
-      :maxlength="maxlength"
+      :max="maxlength"
     />
   </div>
 </template>
@@ -31,8 +31,8 @@ export default {
       type: String,
     },
     maxlength: {
-      type: Number,
-      default: 255,
+      type: String,
+      default: "255",
     },
   },
 

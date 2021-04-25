@@ -9,7 +9,7 @@
       Что-то ещё? <span class="one-more-title-important">Да!</span>
     </h2>
     <p class="one-more-description">
-      Для того, чтобы быть организатором в Daleko, тебя нужно зарегистрировать
+      Для того, чтобы быть организатором в Daleko, вас нужно зарегистрировать
       как самозанятого. Это займёт не больше 5 минут, сделай это сейчас!
     </p>
     <daleko-button @click="$router.push('/register')"
