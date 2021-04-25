@@ -67,7 +67,6 @@
           title="Месяц"
           placeholder="XX"
           type="number"
-          :maxlength="2"
           v-model="cardMonth"
           class="event-payment-input event-payment-input-short"
         />
@@ -76,7 +75,6 @@
           title="Год"
           placeholder="YY"
           type="number"
-          :maxlength="2"
           v-model="cardYear"
           class="event-payment-input event-payment-input-short"
         />

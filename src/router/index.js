@@ -36,11 +36,19 @@ const routes = [
             path: "/my-events",
             name: "my-events",
             component: UserEvents,
+            meta: {
+              title: "Мои мероприятия",
+              needAuth: true,
+            },
           },
           {
             path: "/self-employed",
             name: "self-employed",
             component: SelfEmployed,
+            meta: {
+              title: "Регистрация самозанятого",
+              needAuth: true,
+            },
           },
         ],
       },
@@ -62,6 +70,23 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0);
+  document.title = to.meta.title;
+  if (to.matched.some((record) => record.meta.needAuth)) {
+    if (!JSON.parse(localStorage.getItem("user"))) {
+      next({
+        path: "/login",
+        query: { redirect: to.fullPath },
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;

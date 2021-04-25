@@ -46,11 +46,17 @@
           class="self-employed-input"
         />
         <daleko-input
+          title="Телефон"
+          placeholder="7 (943) 761-89-79"
+          type="number"
+          v-model="phoneNumber"
+          class="self-employed-input"
+        />
+        <daleko-input
           title="ИНН"
           placeholder="Введите ваш ИНН"
           type="number"
           v-model="userINN"
-          maxlength="12"
           class="self-employed-input"
         />
         <div class="self-employed-button">
@@ -81,7 +87,6 @@
             title="Месяц"
             placeholder="XX"
             type="number"
-            maxlength="2"
             v-model="cardMonth"
             class="self-employed-input self-employed-input-short"
           />
@@ -90,7 +95,6 @@
             title="Год"
             placeholder="YY"
             type="number"
-            maxlength="2"
             v-model="cardYear"
             class="self-employed-input self-employed-input-short"
           />
@@ -133,6 +137,8 @@
 import dalekoButton from "@/components/common/daleko-button.vue";
 import dalekoInput from "@/components/common/daleko-input.vue";
 import dalekoNotification from "@/components/common/daleko-notification.vue";
+import { addSelfEmployed } from "@/requests/selfEmployed.js";
+import { getUser } from "@/requests/users.js";
 
 export default {
   components: {
@@ -148,6 +154,7 @@ export default {
       firstName: "",
       lastName: "",
       patronymic: "",
+      phoneNumber: "",
       nationality: "RUS",
       activeSlide: 1,
       isNotificationOpen: false,
@@ -163,7 +170,7 @@ export default {
 
   mounted() {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (user.INN) {
+    if (user.selfEmployedId) {
       this.isUserRegistered = true;
     }
   },
@@ -181,10 +188,49 @@ export default {
       if (
         this.userINN.trim() &&
         this.firstName.trim() &&
-        this.lastName.trim()
+        this.lastName.trim() &&
+        this.phoneNumber.trim()
       ) {
         if (this.userINN.trim().length == 12) {
-          this.activeSlide = 3;
+          if (this.phoneNumber.trim().length == 11) {
+            const userData = {
+              firstName: this.firstName,
+              lastName: this.lastName,
+              patronymic: this.patronymic,
+              inn: this.userINN,
+              phone: this.phoneNumber,
+              nationality: "RUS",
+            };
+
+            const userId = JSON.parse(localStorage.getItem("user")).id;
+
+            addSelfEmployed(userData, userId)
+              .then(() => {
+                this.activeSlide = 4;
+                getUser(userId).then((res) => {
+                  console.log(res);
+                  const user = {
+                    id: res.data.user.id,
+                    firstName: res.data.user.firstName,
+                    lastName: res.data.user.lastName,
+                    email: res.data.user.email,
+                    selfEmployedId: res.data.user.selfEmployedId,
+                  };
+                  localStorage.setItem("user", JSON.stringify(user));
+                });
+              })
+              .catch(() => {
+                this.notificationHeading = "Что-то пошло не так";
+                this.notificationText =
+                  "Проверьте подключение к интернету и попробуйте перезагрузить страницу";
+                this.isNotificationOpen = true;
+              });
+          } else {
+            this.notificationHeading = "Неверный формат номер телефона";
+            this.notificationText =
+              "Введите номер телефона в следующем виде: 79437618979";
+            this.isNotificationOpen = true;
+          }
         } else {
           this.notificationHeading = "ИНН должен состоять из 12 символов";
           this.notificationText =
