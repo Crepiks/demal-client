@@ -56,8 +56,8 @@
           >
         </div>
         <div class="event-button">
-          <daleko-button @click="$emit('open-event-modal')"
-            >Перейти к мероприятию</daleko-button
+          <demal-button @click="$emit('open-event-modal')"
+            >Перейти к мероприятию</demal-button
           >
         </div>
       </div>
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import dalekoButton from "@/components/common/daleko-button.vue";
+import demalButton from "@/components/common/demal-button.vue";
 
 export default {
   props: {
@@ -89,7 +89,7 @@ export default {
   },
 
   components: {
-    "daleko-button": dalekoButton,
+    "demal-button": demalButton,
   },
 
   data() {

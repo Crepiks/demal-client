@@ -8,8 +8,8 @@
         экскурсии
       </p>
       <div class="macbook-button">
-        <daleko-button @click="$router.push('/events')"
-          >Посмотреть мероприятия</daleko-button
+        <demal-button @click="$router.push('/events')"
+          >Посмотреть мероприятия</demal-button
         >
       </div>
     </div>
@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import dalekoButton from "@/components/common/daleko-button.vue";
+import demalButton from "@/components/common/demal-button.vue";
 
 export default {
   components: {
-    "daleko-button": dalekoButton,
+    "demal-button": demalButton,
   },
 };
 </script>

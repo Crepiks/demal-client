@@ -1,18 +1,18 @@
 <template>
   <div class="events-page">
-    <daleko-notification
+    <demal-notification
       :isActive="isNotificationOpen"
       :heading="notificationHeading"
       :text="notificationText"
       @close-notification="isNotificationOpen = false"
       :status="notificationStatus"
     />
-    <daleko-events-list
+    <demal-events-list
       :events="events"
       @change-active-event="changeActiveEvent"
       @open-map="isMapOpen = true"
     />
-    <daleko-event-info
+    <demal-event-info
       :title="activeEvent.title"
       :description="activeEvent.description"
       :images="activeEvent.images"
@@ -20,13 +20,13 @@
       @clear-active-event="clearActiveEvent"
       @open-event-modal="isEventModalOpen = true"
     />
-    <daleko-event-map
+    <demal-event-map
       class="events-map"
       :eventCoords="activeEvent.coords"
       :isMapOpen="isMapOpen"
       @close-map="isMapOpen = false"
     />
-    <daleko-event-modal
+    <demal-event-modal
       :id="activeEvent.id"
       :title="activeEvent.title"
       :description="activeEvent.description"
@@ -41,21 +41,21 @@
 </template>
 
 <script>
-import dalekoEventsList from "@/components/events/daleko-events-list.vue";
-import dalekoEventInfo from "@/components/events/daleko-event-info.vue";
-import dalekoEventMap from "@/components/events/daleko-event-map.vue";
-import dalekoEventModal from "@/components/common/daleko-event-modal.vue";
-import dalekoNotification from "@/components/common/daleko-notification.vue";
+import demalEventsList from "@/components/events/demal-events-list.vue";
+import demalEventInfo from "@/components/events/demal-event-info.vue";
+import demalEventMap from "@/components/events/demal-event-map.vue";
+import demalEventModal from "@/components/common/demal-event-modal.vue";
+import demalNotification from "@/components/common/demal-notification.vue";
 import { getEvents } from "@/requests/events.js";
 import { getUser } from "@/requests/users.js";
 
 export default {
   components: {
-    "daleko-events-list": dalekoEventsList,
-    "daleko-event-info": dalekoEventInfo,
-    "daleko-event-map": dalekoEventMap,
-    "daleko-event-modal": dalekoEventModal,
-    "daleko-notification": dalekoNotification,
+    "demal-events-list": demalEventsList,
+    "demal-event-info": demalEventInfo,
+    "demal-event-map": demalEventMap,
+    "demal-event-modal": demalEventModal,
+    "demal-notification": demalNotification,
   },
 
   data() {

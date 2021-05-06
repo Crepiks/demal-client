@@ -28,7 +28,7 @@ const routes = [
             name: "Home",
             component: Home,
             meta: {
-              title: "Daleko - вдали от городской суеты",
+              title: "demal - вдали от городской суеты",
             },
           },
           {

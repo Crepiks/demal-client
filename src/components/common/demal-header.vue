@@ -22,13 +22,13 @@
         </div>
       </transition>
       <router-link :to="isHomePage ? '/' : '/events'" class="header-logo-link">
-        <h2 class="header-logo">Daleko</h2>
+        <h2 class="header-logo">demal</h2>
       </router-link>
-      <daleko-button
+      <demal-button
         v-if="isHomePage"
         type="border"
         @click="$router.push('/events')"
-        >Перейти к мероприятиям</daleko-button
+        >Перейти к мероприятиям</demal-button
       >
       <div v-else class="header-button-container">
         <span
@@ -46,8 +46,8 @@
           </transition>
           {{ userName }}</span
         >
-        <daleko-button v-else type="border" @click="$router.push('/login')"
-          >Войти</daleko-button
+        <demal-button v-else type="border" @click="$router.push('/login')"
+          >Войти</demal-button
         >
       </div>
     </div>
@@ -55,11 +55,11 @@
 </template>
 
 <script>
-import dalekoButton from "@/components/common/daleko-button.vue";
+import demalButton from "@/components/common/demal-button.vue";
 
 export default {
   components: {
-    "daleko-button": dalekoButton,
+    "demal-button": demalButton,
   },
 
   data() {

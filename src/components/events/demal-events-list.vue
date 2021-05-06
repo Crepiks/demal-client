@@ -2,12 +2,12 @@
   <div class="list">
     <div class="list-header">
       <h2 class="list-title">Список мероприятий</h2>
-      <daleko-button @click="$router.push('/events/add')" size="small"
-        >Создать мероприятие</daleko-button
+      <demal-button @click="$router.push('/events/add')" size="small"
+        >Создать мероприятие</demal-button
       >
     </div>
     <div class="list-cards" v-if="events[0].title">
-      <daleko-event-card
+      <demal-event-card
         class="list-card"
         v-for="event in events"
         :key="event.id"
@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import dalekoEventCard from "@/components/events/daleko-event-card.vue";
-import dalekoButton from "@/components/common/daleko-button.vue";
+import demalEventCard from "@/components/events/demal-event-card.vue";
+import demalButton from "@/components/common/demal-button.vue";
 
 export default {
   props: {
@@ -59,8 +59,8 @@ export default {
   },
 
   components: {
-    "daleko-event-card": dalekoEventCard,
-    "daleko-button": dalekoButton,
+    "demal-event-card": demalEventCard,
+    "demal-button": demalButton,
   },
 };
 </script>

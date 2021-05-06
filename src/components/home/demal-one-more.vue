@@ -9,21 +9,21 @@
       Что-то ещё? <span class="one-more-title-important">Да!</span>
     </h2>
     <p class="one-more-description">
-      Для того, чтобы быть организатором в Daleko, вас нужно зарегистрировать
-      как самозанятого. Это займёт не больше 5 минут, сделай это сейчас!
+      Для того, чтобы быть организатором в demal, вас нужно зарегистрировать как
+      самозанятого. Это займёт не больше 5 минут, сделай это сейчас!
     </p>
-    <daleko-button @click="$router.push('/register')"
-      >Зарегистрироваться как самозанятый</daleko-button
+    <demal-button @click="$router.push('/register')"
+      >Зарегистрироваться как самозанятый</demal-button
     >
   </div>
 </template>
 
 <script>
-import dalekoButton from "@/components/common/daleko-button.vue";
+import demalButton from "@/components/common/demal-button.vue";
 
 export default {
   components: {
-    "daleko-button": dalekoButton,
+    "demal-button": demalButton,
   },
 };
 </script>

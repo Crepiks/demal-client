@@ -1,6 +1,6 @@
 <template>
   <div class="self-employed-page">
-    <daleko-notification
+    <demal-notification
       :isActive="isNotificationOpen"
       :heading="notificationHeading"
       :text="notificationText"
@@ -16,43 +16,43 @@
         />
         <div class="self-employed-label">
           Рады вас видеть! Ваша регистрация как самозанятого позволит вам стать
-          организатором мероприятий Daleko
+          организатором мероприятий demal
         </div>
         <div class="self-employed-button">
-          <daleko-button @click="activeSlide = 2">Начать</daleko-button>
+          <demal-button @click="activeSlide = 2">Начать</demal-button>
         </div>
       </div>
       <div v-else-if="activeSlide == 2" class="self-employed-slide">
         <div class="self-employed-title">Регистрация самозанятого</div>
-        <daleko-input
+        <demal-input
           title="Имя"
           placeholder="Как вас зовут?"
           type="text"
           v-model="firstName"
           class="self-employed-input"
         />
-        <daleko-input
+        <demal-input
           title="Фамилия"
           placeholder="Какая ваша фамилия?"
           type="text"
           v-model="lastName"
           class="self-employed-input"
         />
-        <daleko-input
+        <demal-input
           title="Отчество"
           placeholder="Не обязательно"
           type="text"
           v-model="patronymic"
           class="self-employed-input"
         />
-        <daleko-input
+        <demal-input
           title="Телефон"
           placeholder="7 (943) 761-89-79"
           type="number"
           v-model="phoneNumber"
           class="self-employed-input"
         />
-        <daleko-input
+        <demal-input
           title="ИНН"
           placeholder="Введите ваш ИНН"
           type="number"
@@ -60,8 +60,8 @@
           class="self-employed-input"
         />
         <div class="self-employed-button">
-          <daleko-button :isLoading="isLoading" @click="handleINN"
-            >Далее</daleko-button
+          <demal-button :isLoading="isLoading" @click="handleINN"
+            >Далее</demal-button
           >
         </div>
       </div>
@@ -70,14 +70,14 @@
         class="self-employed-slide self-employed-slide-inputs"
       >
         <div class="self-employed-title">Введите данные банковской карты</div>
-        <daleko-input
+        <demal-input
           title="Номер карты"
           placeholder="Введите номер банковской карты"
           type="number"
           v-model="cardNumber"
           class="self-employed-input"
         />
-        <daleko-input
+        <demal-input
           title="Имя на карте"
           placeholder="Введите имя на вашей карте"
           type="text"
@@ -85,7 +85,7 @@
           class="self-employed-input"
         />
         <div class="self-employed-date">
-          <daleko-input
+          <demal-input
             title="Месяц"
             placeholder="XX"
             type="number"
@@ -93,7 +93,7 @@
             class="self-employed-input self-employed-input-short"
           />
           <div class="self-employed-date-slash">/</div>
-          <daleko-input
+          <demal-input
             title="Год"
             placeholder="YY"
             type="number"
@@ -102,7 +102,7 @@
           />
         </div>
         <div class="self-employed-button">
-          <daleko-button @click="handleCard">Далее</daleko-button>
+          <demal-button @click="handleCard">Далее</demal-button>
         </div>
       </div>
       <div v-else-if="activeSlide == 4" class="self-employed-slide">
@@ -136,17 +136,17 @@
 </template>
 
 <script>
-import dalekoButton from "@/components/common/daleko-button.vue";
-import dalekoInput from "@/components/common/daleko-input.vue";
-import dalekoNotification from "@/components/common/daleko-notification.vue";
+import demalButton from "@/components/common/demal-button.vue";
+import demalInput from "@/components/common/demal-input.vue";
+import demalNotification from "@/components/common/demal-notification.vue";
 import { addSelfEmployed } from "@/requests/selfEmployed.js";
 import { getUser } from "@/requests/users.js";
 
 export default {
   components: {
-    "daleko-button": dalekoButton,
-    "daleko-input": dalekoInput,
-    "daleko-notification": dalekoNotification,
+    "demal-button": demalButton,
+    "demal-input": demalInput,
+    "demal-notification": demalNotification,
   },
 
   data() {

@@ -6,12 +6,12 @@
       <p class="event-description">{{ description.slice(0, 50) }}...</p>
       <div class="event-extra">
         <span class="event-price">{{ price }} ₽ взнос</span>
-        <daleko-button
+        <demal-button
           @click="$emit('open-map')"
           type="border"
           borderRadius="rounded"
           size="small"
-          >Показать на карте</daleko-button
+          >Показать на карте</demal-button
         >
       </div>
     </div>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import dalekoButton from "@/components/common/daleko-button.vue";
+import demalButton from "@/components/common/demal-button.vue";
 
 export default {
   props: {
@@ -42,7 +42,7 @@ export default {
   },
 
   components: {
-    "daleko-button": dalekoButton,
+    "demal-button": demalButton,
   },
 };
 </script>

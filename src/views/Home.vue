@@ -1,24 +1,24 @@
 <template>
   <div class="home-page">
-    <daleko-welcome />
-    <daleko-how />
-    <daleko-macbook />
-    <daleko-one-more />
+    <demal-welcome />
+    <demal-how />
+    <demal-macbook />
+    <demal-one-more />
   </div>
 </template>
 
 <script>
-import dalekoWolcome from "@/components/home/daleko-welcome.vue";
-import dalekoHow from "@/components/home/daleko-how.vue";
-import dalekoMacbook from "@/components/home/daleko-macbook.vue";
-import dalekoOneMore from "@/components/home/daleko-one-more.vue";
+import demalWolcome from "@/components/home/demal-welcome.vue";
+import demalHow from "@/components/home/demal-how.vue";
+import demalMacbook from "@/components/home/demal-macbook.vue";
+import demalOneMore from "@/components/home/demal-one-more.vue";
 
 export default {
   components: {
-    "daleko-welcome": dalekoWolcome,
-    "daleko-how": dalekoHow,
-    "daleko-macbook": dalekoMacbook,
-    "daleko-one-more": dalekoOneMore,
+    "demal-welcome": demalWolcome,
+    "demal-how": demalHow,
+    "demal-macbook": demalMacbook,
+    "demal-one-more": demalOneMore,
   },
 };
 </script>

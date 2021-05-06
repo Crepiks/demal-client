@@ -1,6 +1,6 @@
 <template>
   <div class="map-modal" :class="{ 'map-modal-active': isMapOpen }">
-    <daleko-map-header
+    <demal-map-header
       :mapMode="mapMode"
       :zoom="zoom"
       @change-map-mode="mapMode == 1 ? (mapMode = 2) : (mapMode = 1)"
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import dalekoMapHeader from "@/components/events/daleko-map-header.vue";
+import demalMapHeader from "@/components/events/demal-map-header.vue";
 
 export default {
   props: {
@@ -34,7 +34,7 @@ export default {
   },
 
   components: {
-    "daleko-map-header": dalekoMapHeader,
+    "demal-map-header": demalMapHeader,
   },
 
   data() {

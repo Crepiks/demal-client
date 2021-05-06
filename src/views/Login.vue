@@ -1,21 +1,21 @@
 <template>
-  <daleko-auth @submit="handleSubmit">
-    <daleko-notification
+  <demal-auth @submit="handleSubmit">
+    <demal-notification
       :isActive="isNotificationOpen"
       :heading="notificationHeading"
       :text="notificationText"
       @close-notification="isNotificationOpen = false"
       :status="notificationStatus"
     />
-    <h1 class="auth-title">Войдите в Daleko</h1>
-    <daleko-input
+    <h1 class="auth-title">Войдите в demal</h1>
+    <demal-input
       title="Почта"
       placeholder="Введите электронную почту"
       type="email"
       v-model="email"
       class="auth-input"
     />
-    <daleko-input
+    <demal-input
       title="Пароль"
       placeholder="Введите пароль"
       type="password"
@@ -23,27 +23,27 @@
       class="auth-input"
     />
     <div class="auth-button">
-      <daleko-button :isLoading="isLoading" type="submit">Войти</daleko-button>
+      <demal-button :isLoading="isLoading" type="submit">Войти</demal-button>
       <router-link to="/register" class="auth-link"
         >У меня нет аккаунта</router-link
       >
     </div>
-  </daleko-auth>
+  </demal-auth>
 </template>
 
 <script>
-import dalekoAuth from "@/components/common/daleko-auth.vue";
-import dalekoInput from "@/components/common/daleko-input.vue";
-import dalekoButton from "@/components/common/daleko-button.vue";
-import dalekoNotification from "@/components/common/daleko-notification.vue";
+import demalAuth from "@/components/common/demal-auth.vue";
+import demalInput from "@/components/common/demal-input.vue";
+import demalButton from "@/components/common/demal-button.vue";
+import demalNotification from "@/components/common/demal-notification.vue";
 import { login } from "@/requests/auth.js";
 
 export default {
   components: {
-    "daleko-auth": dalekoAuth,
-    "daleko-input": dalekoInput,
-    "daleko-button": dalekoButton,
-    "daleko-notification": dalekoNotification,
+    "demal-auth": demalAuth,
+    "demal-input": demalInput,
+    "demal-button": demalButton,
+    "demal-notification": demalNotification,
   },
 
   data() {

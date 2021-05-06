@@ -6,17 +6,17 @@
       На природе
     </h1>
     <div class="welcome-button">
-      <daleko-button size="large">Как это работает?</daleko-button>
+      <demal-button size="large">Как это работает?</demal-button>
     </div>
   </div>
 </template>
 
 <script>
-import dalekoButton from "@/components/common/daleko-button.vue";
+import demalButton from "@/components/common/demal-button.vue";
 
 export default {
   components: {
-    "daleko-button": dalekoButton,
+    "demal-button": demalButton,
   },
 };
 </script>

@@ -19,7 +19,7 @@
     </div>
     <div class="list-cards" v-if="listMode == 1">
       <div class="list-cards-container" v-if="participatingEvents[0]">
-        <daleko-event-card
+        <demal-event-card
           class="list-card"
           v-for="event in participatingEvents"
           :key="event.id"
@@ -51,7 +51,7 @@
     </div>
     <div class="list-cards" v-else-if="listMode == 2">
       <div class="list-cards-container" v-if="createdEvents[0]">
-        <daleko-event-card
+        <demal-event-card
           class="list-card"
           v-for="event in createdEvents"
           :key="event.id"
@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import dalekoEventCard from "@/components/events/daleko-event-card.vue";
+import demalEventCard from "@/components/events/demal-event-card.vue";
 
 export default {
   props: {
@@ -96,7 +96,7 @@ export default {
   },
 
   components: {
-    "daleko-event-card": dalekoEventCard,
+    "demal-event-card": demalEventCard,
   },
 
   data() {

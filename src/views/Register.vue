@@ -1,6 +1,6 @@
 <template>
-  <daleko-auth @submit="handleSubmit">
-    <daleko-notification
+  <demal-auth @submit="handleSubmit">
+    <demal-notification
       :isActive="isNotificationOpen"
       :heading="notificationHeading"
       :text="notificationText"
@@ -9,37 +9,37 @@
     />
     <h1 class="auth-title">
       Добро пожаловать<br />
-      в Daleko
+      в demal
     </h1>
-    <daleko-input
+    <demal-input
       title="Имя"
       placeholder="Как вас зовут?"
       type="text"
       v-model="firstName"
       class="auth-input"
     />
-    <daleko-input
+    <demal-input
       title="Фамилия"
       placeholder="Какая у вас фамилия?"
       type="test"
       v-model="lastName"
       class="auth-input"
     />
-    <daleko-input
+    <demal-input
       title="Почта"
       placeholder="Введите электронную почту"
       type="email"
       v-model="email"
       class="auth-input"
     />
-    <daleko-input
+    <demal-input
       title="Пароль"
       placeholder="Введите пароль"
       type="password"
       v-model="password"
       class="auth-input"
     />
-    <daleko-input
+    <demal-input
       title="Подтверждение пароля"
       placeholder="Введите пароль еще раз"
       type="password"
@@ -47,27 +47,27 @@
       class="auth-input"
     />
     <div class="auth-button">
-      <daleko-button :isLoading="isLoading" type="submit"
-        >Зарегистрироваться</daleko-button
+      <demal-button :isLoading="isLoading" type="submit"
+        >Зарегистрироваться</demal-button
       >
       <router-link to="/login" class="auth-link">Есть аккаунт</router-link>
     </div>
-  </daleko-auth>
+  </demal-auth>
 </template>
 
 <script>
-import dalekoAuth from "@/components/common/daleko-auth.vue";
-import dalekoInput from "@/components/common/daleko-input.vue";
-import dalekoButton from "@/components/common/daleko-button.vue";
-import dalekoNotification from "@/components/common/daleko-notification.vue";
+import demalAuth from "@/components/common/demal-auth.vue";
+import demalInput from "@/components/common/demal-input.vue";
+import demalButton from "@/components/common/demal-button.vue";
+import demalNotification from "@/components/common/demal-notification.vue";
 import { register } from "@/requests/auth.js";
 
 export default {
   components: {
-    "daleko-auth": dalekoAuth,
-    "daleko-input": dalekoInput,
-    "daleko-button": dalekoButton,
-    "daleko-notification": dalekoNotification,
+    "demal-auth": demalAuth,
+    "demal-input": demalInput,
+    "demal-button": demalButton,
+    "demal-notification": demalNotification,
   },
 
   data() {

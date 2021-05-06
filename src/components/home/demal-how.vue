@@ -25,8 +25,8 @@
             Знакомьтесь с новыми людьми, наслаждайтесь природой России
           </p>
           <div class="how-button">
-            <daleko-button @click="$router.push('/events')"
-              >Найти мероприятие</daleko-button
+            <demal-button @click="$router.push('/events')"
+              >Найти мероприятие</demal-button
             >
           </div>
         </div>
@@ -47,8 +47,8 @@
             процент со взносов
           </p>
           <div class="how-button">
-            <daleko-button @click="$router.push('/events/add')"
-              >Создать меропритие</daleko-button
+            <demal-button @click="$router.push('/events/add')"
+              >Создать меропритие</demal-button
             >
           </div>
         </div>
@@ -63,11 +63,11 @@
 </template>
 
 <script>
-import dalekoButton from "@/components/common/daleko-button.vue";
+import demalButton from "@/components/common/demal-button.vue";
 
 export default {
   components: {
-    "daleko-button": dalekoButton,
+    "demal-button": demalButton,
   },
 
   data() {

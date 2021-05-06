@@ -1,6 +1,6 @@
 <template>
   <div class="page-header">
-    <daleko-header />
+    <demal-header />
     <div class="page-content">
       <router-view />
     </div>
@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import dalekoHeader from "@/components/common/daleko-header.vue";
+import demalHeader from "@/components/common/demal-header.vue";
 
 export default {
   components: {
-    "daleko-header": dalekoHeader,
+    "demal-header": demalHeader,
   },
 };
 </script>

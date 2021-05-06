@@ -1,6 +1,6 @@
 <template>
   <div class="event" :class="{ 'event-active': isEventModalOpen }">
-    <daleko-notification
+    <demal-notification
       :isActive="isNotificationOpen"
       :heading="notificationHeading"
       :text="notificationText"
@@ -55,14 +55,14 @@
     </div>
     <div v-if="!participating" class="event-payment">
       <h2 class="event-payment-title">Оплата взноса</h2>
-      <daleko-input
+      <demal-input
         title="Номер карты"
         placeholder="Введите номер банковской карты"
         type="number"
         v-model="cardNumber"
         class="event-payment-input"
       />
-      <daleko-input
+      <demal-input
         title="Имя на карте"
         placeholder="Введите имя на вашей карте"
         type="text"
@@ -70,7 +70,7 @@
         class="event-payment-input"
       />
       <div class="event-payment-date">
-        <daleko-input
+        <demal-input
           title="Месяц"
           placeholder="XX"
           type="number"
@@ -78,7 +78,7 @@
           class="event-payment-input event-payment-input-short"
         />
         <div class="event-payment-date-slash">/</div>
-        <daleko-input
+        <demal-input
           title="Год"
           placeholder="YY"
           type="number"
@@ -86,11 +86,11 @@
           class="event-payment-input event-payment-input-short"
         />
       </div>
-      <daleko-button
+      <demal-button
         :isLoading="isLoading"
         @click="handlePayment"
         class="event-payment-button"
-        >Оплатить взнос</daleko-button
+        >Оплатить взнос</demal-button
       >
     </div>
     <div v-else class="event-participating">
@@ -102,9 +102,9 @@
 </template>
 
 <script>
-import dalekoInput from "@/components/common/daleko-input.vue";
-import dalekoButton from "@/components/common/daleko-button.vue";
-import dalekoNotification from "@/components/common/daleko-notification.vue";
+import demalInput from "@/components/common/demal-input.vue";
+import demalButton from "@/components/common/demal-button.vue";
+import demalNotification from "@/components/common/demal-notification.vue";
 import { payDonation } from "@/requests/payment.js";
 
 export default {
@@ -143,9 +143,9 @@ export default {
   },
 
   components: {
-    "daleko-input": dalekoInput,
-    "daleko-button": dalekoButton,
-    "daleko-notification": dalekoNotification,
+    "demal-input": demalInput,
+    "demal-button": demalButton,
+    "demal-notification": demalNotification,
   },
 
   data() {
