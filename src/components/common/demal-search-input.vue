@@ -2,7 +2,7 @@
   <div class="search-container">
     <input
       :name="name"
-      :type="type"
+      type="text"
       class="search-input"
       :placeholder="placeholder"
       :value="value"

@@ -27,16 +27,6 @@
       :isMapOpen="isMapOpen"
       @close-map="isMapOpen = false"
     />
-    <demal-event-modal
-      :id="activeEvent.id"
-      :title="activeEvent.title"
-      :description="activeEvent.description"
-      :creator="activeEvent.creator"
-      :participants="activeEvent.participants"
-      :isEventModalOpen="isEventModalOpen"
-      :images="activeEvent.images"
-      @close-event-modal="isEventModalOpen = false"
-    />
   </div>
 </template>
 
@@ -44,7 +34,6 @@
 import demalUserEventsList from "@/components/user-events/demal-user-events-list.vue";
 import demalEventInfo from "@/components/events/demal-event-info.vue";
 import demalEventMap from "@/components/events/demal-event-map.vue";
-import demalEventModal from "@/components/common/demal-event-modal.vue";
 import demalNotification from "@/components/common/demal-notification.vue";
 import { getUser } from "@/requests/users.js";
 
@@ -53,7 +42,6 @@ export default {
     "demal-user-events-list": demalUserEventsList,
     "demal-event-info": demalEventInfo,
     "demal-event-map": demalEventMap,
-    "demal-event-modal": demalEventModal,
     "demal-notification": demalNotification,
   },
 

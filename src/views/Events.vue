@@ -10,7 +10,6 @@
     <demal-events-list
       :events="events"
       @change-active-event="changeActiveEvent"
-      @open-map="isMapOpen = true"
     />
     <demal-event-info
       :title="activeEvent.title"
@@ -18,24 +17,13 @@
       :images="activeEvent.images"
       :date="activeEvent.date"
       @clear-active-event="clearActiveEvent"
-      @open-event-modal="isEventModalOpen = true"
+      @open-map="isMapOpen = true"
     />
     <demal-event-map
       class="events-map"
       :eventCoords="activeEvent.coords"
       :isMapOpen="isMapOpen"
       @close-map="isMapOpen = false"
-    />
-    <demal-event-modal
-      :id="activeEvent.id"
-      :title="activeEvent.title"
-      :description="activeEvent.description"
-      :creator="activeEvent.creator"
-      :participants="activeEvent.participants"
-      :userEvents="participatingEvents.concat(createdEvents)"
-      :isEventModalOpen="isEventModalOpen"
-      :images="activeEvent.images"
-      @close-event-modal="isEventModalOpen = false"
     />
   </div>
 </template>
@@ -44,7 +32,6 @@
 import demalEventsList from "@/components/events/demal-events-list.vue";
 import demalEventInfo from "@/components/events/demal-event-info.vue";
 import demalEventMap from "@/components/events/demal-event-map.vue";
-import demalEventModal from "@/components/common/demal-event-modal.vue";
 import demalNotification from "@/components/common/demal-notification.vue";
 // import { getEvents } from "@/requests/events.js";
 // import { getUser } from "@/requests/users.js";
@@ -55,7 +42,6 @@ export default {
     "demal-events-list": demalEventsList,
     "demal-event-info": demalEventInfo,
     "demal-event-map": demalEventMap,
-    "demal-event-modal": demalEventModal,
     "demal-notification": demalNotification,
   },
 

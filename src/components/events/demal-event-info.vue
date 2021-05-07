@@ -1,14 +1,9 @@
 <template>
   <transition name="fade" mode="out-in">
     <div v-if="!title" class="event-empty" key="empty">
-      <img
-        src="@/assets/images/event-empty-image.svg"
-        alt="Наведите курсор на мероприятие"
-        class="event-empty-image"
-      />
+      <i class="fas fa-campground event-empty-icon"></i>
       <span class="event-empty-title"
-        >Наведите курсор на мероприятие, чтобы посмотреть больше информации о
-        нем</span
+        >Кликните на интересный вам тур, чтобы получить больше информации</span
       >
     </div>
     <div v-else class="event-info" key="content">
@@ -31,34 +26,74 @@
         </div>
       </div>
       <div class="event-text">
-        <h1 class="event-title">{{ title }}</h1>
-        <p class="event-description">{{ description }}</p>
-        <div class="event-date">
-          <div class="event-date-label">Дата проведения:</div>
-          <span class="event-date-point">с {{ parsedDate[0] }}</span>
-          <span class="event-date-point">до {{ parsedDate[1] }}</span>
-          <span
-            class="event-date-status"
-            :class="{
-              'event-date-status-passed': eventStatus == 'passed',
-              'event-date-status-passing': eventStatus == 'passing',
-              'event-date-status-will': eventStatus == 'willPass',
-            }"
-            >{{
-              eventStatus == "passing"
-                ? "Проводится сейчас"
-                : eventStatus == "willPass"
-                ? "Еще не началось"
-                : eventStatus == "passed"
-                ? "Уже прошло"
-                : ""
-            }}</span
-          >
+        <h1 class="event-title">
+          {{ title }}
+          <div class="event-rating">
+            <i class="fas fa-star event-rating-icon"></i>
+            <span class="event-rating-label">4.5</span>
+          </div>
+        </h1>
+        <div class="event-tags">
+          <div class="event-tag">На этой неделе</div>
+          <div class="event-tag">Тур на один день</div>
+          <div class="event-tag">Без спец оборудования</div>
         </div>
-        <div class="event-button">
-          <demal-button @click="$emit('open-event-modal')"
-            >Перейти к мероприятию</demal-button
+        <p class="event-description">{{ description }}</p>
+        <div class="event-extra event-extra-first">
+          <h3 class="event-extra-title">Главное</h3>
+          <div class="event-extra-info">
+            <span class="event-extra-label">Начало:</span>
+            <span class="event-extra-data">7 мая 9:00</span>
+          </div>
+          <div class="event-extra-info">
+            <span class="event-extra-label">Конец:</span>
+            <span class="event-extra-data">7 мая 21:30</span>
+          </div>
+          <div class="event-extra-info">
+            <span class="event-extra-label">Место сбора:⁣⁣</span>
+            <span class="event-extra-data">Абая - Жарокова (парковка)</span>
+            <demal-button
+              size="small"
+              type="border"
+              class="event-extra-button"
+              @click="$emit('open-map')"
+              >Посмотреть на карте</demal-button
+            >
+          </div>
+          <div class="event-extra-info">
+            <span class="event-extra-label">Необходимые вещи:</span>
+            <span class="event-extra-data"
+              >Сменные вещи, питье, еду, наличные деньги, удостоверение личности
+              (обязательно), маска и антисептик</span
+            >
+          </div>
+        </div>
+        <div class="event-extra event-extra-second">
+          <h3 class="event-extra-title">Участники</h3>
+          <div class="event-participant">
+            <span class="event-participant-name event-creator">Азат</span>
+            <span class="event-participant-email">azatuk2005@mail.ru</span>
+          </div>
+          <div class="event-participant">
+            <span class="event-participant-name event-creator">Саяжан</span>
+            <span class="event-participant-email"
+              >sayazhan.onlassyn@gmail.com</span
+            >
+          </div>
+          <div class="event-participant">
+            <span class="event-participant-name event-creator">Данияр</span>
+            <span class="event-participant-email">donchik-donchik@mail.ru</span>
+          </div>
+          <div class="event-participant">
+            <span class="event-participant-name event-creator">Султан</span>
+            <span class="event-participant-email">sylia12345@gmail.com</span>
+          </div>
+        </div>
+        <div class="event-subscribe">
+          <demal-button class="event-subscribe-button"
+            >Записаться на тур</demal-button
           >
+          <span class="event-subscribe-status">Тур доступен по подписке</span>
         </div>
       </div>
     </div>
@@ -206,6 +241,7 @@ export default {
     border-radius: 50px;
     background-color: white;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+    overflow: auto;
     cursor: pointer;
     transition: 200ms ease-in-out;
 
@@ -223,8 +259,8 @@ export default {
   &-info {
     position: relative;
     padding: 30px 20px;
-    padding-right: 0;
-    width: 60%;
+    padding-right: 50px;
+    width: calc(100% - 36%);
     height: 100%;
     box-sizing: border-box;
     display: flex;
@@ -233,7 +269,7 @@ export default {
   }
 
   &-gallery {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     height: 400px;
     width: 100%;
     display: flex;
@@ -243,8 +279,7 @@ export default {
 
   &-image {
     width: 500px;
-    height: 100px;
-    height: auto;
+    height: 350px;
     border-radius: 10px;
     background-position: center center;
     background-size: cover;
@@ -252,7 +287,7 @@ export default {
   }
 
   &-images {
-    width: 30%;
+    width: calc(100% - 520px);
     height: 100%;
     display: grid;
     grid-template-rows: repeat(4, 23%);
@@ -269,65 +304,136 @@ export default {
     background-size: cover;
     background-repeat: no-repeat;
     cursor: pointer;
-    transition: 100ms ease-in-out;
+    transition: 150ms ease-in-out;
 
     &:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
   }
 
   &-text {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   &-title {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     color: $main-dark;
     font-size: 30px;
     font-weight: 600;
   }
 
-  &-description {
+  &-rating {
+    margin-left: 15px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+
+    &-icon {
+      margin-right: 10px;
+      color: #f1c40f;
+      font-size: 20px;
+    }
+
+    &-label {
+      color: $main-dark;
+      font-size: 20px;
+      font-weight: 400;
+    }
+  }
+
+  &-tags {
     margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  &-tag {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 8px 16px;
+    color: $primary;
+    font-size: 14px;
+    border: 1px solid $primary;
+    border-radius: 100px;
+  }
+
+  &-description {
+    margin-bottom: 40px;
+    width: 100%;
     color: $main-dark;
     font-size: 18px;
     line-height: 150%;
     opacity: 0.7;
   }
 
-  &-date {
-    margin-bottom: 25px;
-    color: $main-dark;
+  &-extra {
+    width: 50%;
+    height: auto;
+    box-sizing: border-box;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    opacity: 0.8;
+    flex-direction: column;
+
+    &-first {
+      padding-right: 20px;
+    }
+
+    &-second {
+      padding-left: 20px;
+    }
+
+    &-title {
+      margin-bottom: 15px;
+      color: $main-dark;
+      font-size: 22px;
+    }
+
+    &-info {
+      margin-bottom: 10px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      color: $main-dark;
+      font-size: 16px;
+    }
 
     &-label {
-      margin-right: 10px;
-      font-size: 20px;
+      margin-right: 5px;
       font-weight: bold;
     }
 
-    &-point {
-      margin-right: 5px;
-      font-size: 20px;
+    &-data {
+      margin: 5px 0;
       font-weight: 400;
+      line-height: 130%;
     }
 
-    &-status {
-      margin-left: 10px;
-      font-size: 18px;
+    &-button {
+      margin: 5px 0;
+    }
+  }
 
-      &-passed {
-        color: $error;
-      }
+  &-participant {
+    margin-bottom: 15px;
+    padding: 12px 20px;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    color: $main-dark;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #c0b7ec40;
 
-      &-passing {
-        color: $primary;
-      }
+    &-name {
+      margin-right: 8px;
     }
   }
 
@@ -341,9 +447,11 @@ export default {
     justify-content: center;
     align-items: center;
 
-    &-image {
+    &-icon {
       margin-bottom: 20px;
-      width: 50%;
+      color: $primary;
+      font-size: 100px;
+      opacity: 0.4;
       -moz-user-select: none;
       -khtml-user-select: none;
       -webkit-user-select: none;
@@ -351,17 +459,33 @@ export default {
     }
 
     &-title {
-      width: 60%;
+      width: 300px;
       color: $main-dark;
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 500;
       line-height: 150%;
       text-align: center;
-      opacity: 0.6;
+      opacity: 0.5;
       -moz-user-select: none;
       -khtml-user-select: none;
       -webkit-user-select: none;
       user-select: none;
+    }
+  }
+
+  &-subscribe {
+    margin: 40px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &-button {
+      margin-right: 20px;
+    }
+
+    &-status {
+      color: $success;
+      font-size: 16px;
     }
   }
 }

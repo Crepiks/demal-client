@@ -1,13 +1,20 @@
 <template>
   <div class="list">
     <div class="list-header">
-      <demal-search-input v-model="search" placeholder="Найдите тур по душе" />
+      <demal-search-input
+        v-model="search"
+        name="eventSeach"
+        placeholder="Найдите тур по душе"
+      />
       <div class="list-header-tags">
-        <div class="list-header-tag list-header-tag-active">На этой неделе</div>
-        <div class="list-header-tag">Тур на один день</div>
-        <div class="list-header-tag">Экстримальный тур</div>
-        <div class="list-header-tag list-header-tag-active">
-          Без спец оборудования
+        <div
+          v-for="tag in tags"
+          :key="tag.id"
+          class="list-header-tag"
+          :class="{ 'list-header-tag-active': isTagActive(tag.id) }"
+          @click="handleTag(tag.id)"
+        >
+          {{ tag.title }}
         </div>
       </div>
     </div>
@@ -71,7 +78,57 @@ export default {
   data() {
     return {
       search: "",
+      tags: [
+        {
+          id: 1,
+          title: "На этой неделе",
+        },
+        {
+          id: 2,
+          title: "Тур на день",
+        },
+        {
+          id: 3,
+          title: "Экстремально",
+        },
+        {
+          id: 4,
+          title: "Без спец оборудования",
+        },
+      ],
+      activeTags: [],
     };
+  },
+
+  methods: {
+    handleTag(tagId) {
+      let isTagActive = false;
+
+      this.activeTags.forEach((activeTag) => {
+        if (activeTag.id == tagId) {
+          isTagActive = true;
+          this.activeTags.splice(this.activeTags.indexOf(activeTag), 1);
+        }
+      });
+
+      if (!isTagActive) {
+        this.tags.forEach((tag) => {
+          if (tag.id == tagId) {
+            this.activeTags.push(tag);
+          }
+        });
+      }
+    },
+
+    isTagActive(tagId) {
+      let returnData = false;
+      this.activeTags.forEach((activeTag) => {
+        if (activeTag.id == tagId) {
+          returnData = true;
+        }
+      });
+      return returnData;
+    },
   },
 };
 </script>
@@ -80,9 +137,7 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .list {
-  padding: 30px 30px;
-  padding-left: 0;
-  padding-top: 0;
+  padding-right: 30px;
   width: 36%;
   height: 100vh;
   box-sizing: border-box;
