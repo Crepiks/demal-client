@@ -50,7 +50,7 @@ export default {};
   }
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1150px) {
   .page {
     display: flex;
     flex-direction: column;

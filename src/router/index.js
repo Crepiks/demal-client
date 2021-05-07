@@ -7,8 +7,6 @@ import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
 import Events from "@/views/Events.vue";
 import UserEvents from "@/views/UserEvents.vue";
-import SelfEmployed from "@/views/SelfEmployed.vue";
-import AddEvent from "@/views/AddEvent.vue";
 
 Vue.use(VueRouter);
 
@@ -32,39 +30,20 @@ const routes = [
             },
           },
           {
-            path: "/events",
-            name: "events",
+            path: "/tours",
+            name: "tours",
             component: Events,
             meta: {
-              title: "Мероприятия",
+              title: "Все туры",
             },
           },
           {
-            path: "/my-events",
-            name: "my-events",
+            path: "/my-tours",
+            name: "my-tours",
             component: UserEvents,
             meta: {
-              title: "Мои мероприятия",
+              title: "Мои туры",
               needAuth: true,
-            },
-          },
-          {
-            path: "/self-employed",
-            name: "self-employed",
-            component: SelfEmployed,
-            meta: {
-              title: "Регистрация самозанятого",
-              needAuth: true,
-            },
-          },
-          {
-            path: "/events/add",
-            name: "add-event",
-            component: AddEvent,
-            meta: {
-              title: "Создать мероприятие",
-              needAuth: true,
-              needSelfEmployedRegister: true,
             },
           },
         ],

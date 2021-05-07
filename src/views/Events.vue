@@ -165,7 +165,7 @@ export default {
 .events {
   &-page {
     width: 100%;
-    height: calc(100vh - 80px);
+    height: 100vh;
     display: flex;
     flex-direction: row;
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="page-header">
-    <demal-header />
+    <demal-sidebar />
     <div class="page-content">
       <router-view />
     </div>
@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import demalHeader from "@/components/common/demal-header.vue";
+import demalSidebar from "@/components/common/demal-sidebar.vue";
 
 export default {
   components: {
-    "demal-header": demalHeader,
+    "demal-sidebar": demalSidebar,
   },
 };
 </script>
@@ -20,7 +20,7 @@ export default {
 <style lang="scss" scoped>
 .page {
   &-content {
-    padding-top: 80px;
+    padding-left: 90px;
     width: 100%;
     min-height: 100vh;
     box-sizing: border-box;
