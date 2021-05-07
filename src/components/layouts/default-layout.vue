@@ -24,11 +24,9 @@ export default {};
 
 .page {
   position: relative;
-  padding: 0 30px;
   margin: auto;
   width: 100%;
   box-sizing: border-box;
-  max-width: 1400px;
   min-height: 100vh;
 }
 
@@ -50,7 +48,7 @@ export default {};
   }
 }
 
-@media (max-width: 1150px) {
+@media (max-width: 1200px) {
   .page {
     display: flex;
     flex-direction: column;

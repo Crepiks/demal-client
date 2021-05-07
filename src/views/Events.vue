@@ -46,8 +46,9 @@ import demalEventInfo from "@/components/events/demal-event-info.vue";
 import demalEventMap from "@/components/events/demal-event-map.vue";
 import demalEventModal from "@/components/common/demal-event-modal.vue";
 import demalNotification from "@/components/common/demal-notification.vue";
-import { getEvents } from "@/requests/events.js";
-import { getUser } from "@/requests/users.js";
+// import { getEvents } from "@/requests/events.js";
+// import { getUser } from "@/requests/users.js";
+import events from "@/data/events.js";
 
 export default {
   components: {
@@ -60,15 +61,7 @@ export default {
 
   data() {
     return {
-      events: [
-        {
-          id: 0,
-          title: "",
-          description: "",
-          images: [{ path: "" }],
-          price: 0,
-        },
-      ],
+      events: events,
       activeEvent: {
         id: 0,
         title: "",
@@ -101,33 +94,33 @@ export default {
     };
   },
 
-  mounted() {
-    getEvents()
-      .then((res) => {
-        this.events = res.data.events;
-      })
-      .catch(() => {
-        this.notificationHeading = "Что-то пошло не так";
-        this.notificationText =
-          "Проверьте подключение к интернету и попробуйте перезагрузить страницу";
-        this.isNotificationOpen = true;
-      });
+  // mounted() {
+  //   getEvents()
+  //     .then((res) => {
+  //       this.events = res.data.events;
+  //     })
+  //     .catch(() => {
+  //       this.notificationHeading = "Что-то пошло не так";
+  //       this.notificationText =
+  //         "Проверьте подключение к интернету и попробуйте перезагрузить страницу";
+  //       this.isNotificationOpen = true;
+  //     });
 
-    const userId = JSON.parse(localStorage.getItem("user")).id;
-    if (userId) {
-      getUser(userId)
-        .then((res) => {
-          this.participatingEvents = res.data.user.participatingEvents;
-          this.createdEvents = res.data.user.createdEvents;
-        })
-        .catch(() => {
-          this.notificationHeading = "Что-то пошло не так";
-          this.notificationText =
-            "Проверьте подключение к интернету и попробуйте перезагрузить страницу";
-          this.isNotificationOpen = true;
-        });
-    }
-  },
+  //   const userId = JSON.parse(localStorage.getItem("user")).id;
+  //   if (userId) {
+  //     getUser(userId)
+  //       .then((res) => {
+  //         this.participatingEvents = res.data.user.participatingEvents;
+  //         this.createdEvents = res.data.user.createdEvents;
+  //       })
+  //       .catch(() => {
+  //         this.notificationHeading = "Что-то пошло не так";
+  //         this.notificationText =
+  //           "Проверьте подключение к интернету и попробуйте перезагрузить страницу";
+  //         this.isNotificationOpen = true;
+  //       });
+  //   }
+  // },
 
   methods: {
     changeActiveEvent(eventId) {

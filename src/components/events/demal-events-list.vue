@@ -1,10 +1,15 @@
 <template>
   <div class="list">
     <div class="list-header">
-      <h2 class="list-title">Список мероприятий</h2>
-      <demal-button @click="$router.push('/events/add')" size="small"
-        >Создать мероприятие</demal-button
-      >
+      <demal-search-input v-model="search" placeholder="Найдите тур по душе" />
+      <div class="list-header-tags">
+        <div class="list-header-tag list-header-tag-active">На этой неделе</div>
+        <div class="list-header-tag">Тур на один день</div>
+        <div class="list-header-tag">Экстримальный тур</div>
+        <div class="list-header-tag list-header-tag-active">
+          Без спец оборудования
+        </div>
+      </div>
     </div>
     <div class="list-cards" v-if="events[0].title">
       <demal-event-card
@@ -19,7 +24,7 @@
             ? event.images[0].path
             : 'https://sun9-65.userapi.com/impg/kvt9TuPNUBaDf2RYAL89yD1-GAKG0BWvOw4v-g/Vqkgj4rIhqk.jpg?size=2560x1710&quality=96&sign=2adb41c5b3357682d825e4365a7ed21b&type=album'
         "
-        @mouseenter="$emit('change-active-event', event.id)"
+        @change-active-event="$emit('change-active-event', event.id)"
         @open-map="$emit('open-map')"
       />
     </div>
@@ -48,7 +53,7 @@
 
 <script>
 import demalEventCard from "@/components/events/demal-event-card.vue";
-import demalButton from "@/components/common/demal-button.vue";
+import demalSearchInput from "@/components/common/demal-search-input.vue";
 
 export default {
   props: {
@@ -60,7 +65,13 @@ export default {
 
   components: {
     "demal-event-card": demalEventCard,
-    "demal-button": demalButton,
+    "demal-search-input": demalSearchInput,
+  },
+
+  data() {
+    return {
+      search: "",
+    };
   },
 };
 </script>
@@ -72,21 +83,46 @@ export default {
   padding: 30px 30px;
   padding-left: 0;
   padding-top: 0;
-  width: 45%;
-  height: 100%;
+  width: 36%;
+  height: 100vh;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-right: 2px solid #b2bec350;
   overflow: auto;
 
   &-header {
     padding: 30px 0 10px 0;
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
+
+    &-tags {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    &-tag {
+      margin-right: 10px;
+      margin-bottom: 10px;
+      padding: 8px 17px;
+      color: $primary;
+      font-size: 14px;
+      border: 1px solid $primary;
+      border-radius: 100px;
+      background-color: transparent;
+      opacity: 0.6;
+      cursor: pointer;
+      transition: 200ms ease-in-out;
+
+      &-active {
+        opacity: 1;
+      }
+    }
   }
 
   &-title {
@@ -100,11 +136,12 @@ export default {
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow: auto;
   }
 
   &-card {
-    border-bottom: 1px solid #c3c3c3;
-    padding: 30px 0;
+    border-bottom: 1px solid #c3c3c350;
+    padding: 20px 0;
     cursor: pointer;
   }
 

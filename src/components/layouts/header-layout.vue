@@ -20,7 +20,7 @@ export default {
 <style lang="scss" scoped>
 .page {
   &-content {
-    padding-left: 90px;
+    padding-left: 140px;
     width: 100%;
     min-height: 100vh;
     box-sizing: border-box;

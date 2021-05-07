@@ -1,26 +1,23 @@
 <template>
-  <div class="event-card" @mouseenter="$emit('mouseenter')">
+  <div class="event-card" @click="$emit('change-active-event')">
     <div class="event-image" :style="{ backgroundImage: `url(${path})` }"></div>
     <div class="event-text">
-      <h3 class="event-title">{{ title }}</h3>
-      <p class="event-description">{{ description.slice(0, 50) }}...</p>
+      <div class="event-main">
+        <h3 class="event-title">{{ title }}</h3>
+        <p class="event-description">Начало: 7 мая</p>
+      </div>
       <div class="event-extra">
-        <span class="event-price">{{ price }} ₽ взнос</span>
-        <demal-button
-          @click="$emit('open-map')"
-          type="border"
-          borderRadius="rounded"
-          size="small"
-          >Показать на карте</demal-button
-        >
+        <div class="event-rating">
+          <i class="fas fa-star event-rating-icon"></i>
+          <span class="event-rating-label">4.5</span>
+        </div>
+        <span class="event-people">10 человек</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import demalButton from "@/components/common/demal-button.vue";
-
 export default {
   props: {
     title: {
@@ -40,10 +37,6 @@ export default {
       required: true,
     },
   },
-
-  components: {
-    "demal-button": demalButton,
-  },
 };
 </script>
 
@@ -59,9 +52,9 @@ export default {
 
   &-image {
     margin-right: 20px;
-    width: 220px;
+    width: 180px;
     height: 130px;
-    border-radius: 10px;
+    border-radius: 15px;
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -71,12 +64,19 @@ export default {
     width: calc(100% - 220px);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   &-title {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     color: $main-dark;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   &-description {
@@ -91,6 +91,30 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  &-rating {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    opacity: 0.8;
+
+    &-icon {
+      margin-right: 5px;
+      color: #f1c40f;
+      font-size: 15px;
+    }
+
+    &-label {
+      color: $main-dark;
+      font-size: 14px;
+    }
+  }
+
+  &-people {
+    color: $main-dark;
+    font-size: 14px;
+    opacity: 0.8;
   }
 }
 </style>

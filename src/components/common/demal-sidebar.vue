@@ -79,8 +79,6 @@ export default {
   align-items: center;
   justify-content: space-between;
   background-color: transparent;
-  background-color: white;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
   z-index: 3;
 
   &-links {
