@@ -1,6 +1,13 @@
 <template>
   <header class="header">
-    <img src="@/assets/images/logo.png" alt="Demal" class="header-logo" />
+    <div class="header__logo">
+      <img
+        src="@/assets/images/logo.svg"
+        alt="Demal Logo"
+        class="header__logo-icon"
+      />
+      <span class="header__logo-text">DEMAL</span>
+    </div>
     <demal-button type="border" :inverted="true" @click="$router.push('/login')"
       >Войти</demal-button
     >
@@ -32,16 +39,24 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  opacity: 0.6;
   transition: 200ms ease-in-out;
   z-index: 3;
 
-  &:hover {
-    opacity: 1;
+  &__logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 
-  &-logo {
+  &__logo-icon {
+    margin-right: 10px;
     height: 50%;
+  }
+
+  &__logo-text {
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 600;
   }
 }
 </style>

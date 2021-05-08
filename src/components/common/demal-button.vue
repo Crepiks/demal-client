@@ -51,7 +51,7 @@ export default {
   color: $white;
   font-size: 16px;
   font-weight: 500;
-  border: 1px solid $primary;
+  border: 2px solid $primary;
   border-radius: 10px;
   outline: none;
   background-color: $primary;
@@ -59,7 +59,7 @@ export default {
   transition: 200ms ease-in-out;
 
   &:hover {
-    opacity: 0.6;
+    opacity: 0.7;
   }
 
   &-border {
