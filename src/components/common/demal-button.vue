@@ -70,12 +70,6 @@ export default {
   &-large {
     padding: 15px 30px;
     font-size: 20px;
-    font-weight: 600;
-
-    &:hover {
-      transform: scale(0.97);
-      opacity: 1;
-    }
   }
 
   &-small {

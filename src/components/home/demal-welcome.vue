@@ -82,7 +82,7 @@ export default {
     margin-bottom: 40px;
     width: 90%;
     color: $white;
-    font-size: 25px;
+    font-size: 22px;
     line-height: 140%;
     opacity: 0.8;
   }
