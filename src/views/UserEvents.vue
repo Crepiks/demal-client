@@ -8,10 +8,9 @@
       :status="notificationStatus"
     />
     <demal-user-events-list
-      :participatingEvents="participatingEvents"
-      :createdEvents="createdEvents"
+      :pastEvents="pastEvents"
+      :upComingEvents="upComingEvents"
       @change-active-event="changeActiveEvent"
-      @open-map="isMapOpen = true"
     />
     <demal-event-info
       :title="activeEvent.title"
@@ -19,7 +18,7 @@
       :images="activeEvent.images"
       :date="activeEvent.date"
       @clear-active-event="clearActiveEvent"
-      @open-event-modal="isEventModalOpen = true"
+      @open-map="isMapOpen = true"
     />
     <demal-event-map
       class="events-map"
@@ -35,7 +34,8 @@ import demalUserEventsList from "@/components/user-events/demal-user-events-list
 import demalEventInfo from "@/components/events/demal-event-info.vue";
 import demalEventMap from "@/components/events/demal-event-map.vue";
 import demalNotification from "@/components/common/demal-notification.vue";
-import { getUser } from "@/requests/users.js";
+// import { getUser } from "@/requests/users.js";
+import events from "@/data/events.js";
 
 export default {
   components: {
@@ -47,18 +47,8 @@ export default {
 
   data() {
     return {
-      participatingEvents: [
-        {
-          id: 0,
-          title: "",
-          description: "",
-          images: [{ path: "" }],
-          price: 0,
-        },
-      ],
-      createdEvents: [
-        { title: "", description: "", images: [{ path: "" }], price: 0 },
-      ],
+      pastEvents: events,
+      upComingEvents: events,
       activeEvent: {
         id: 0,
         title: "",
@@ -89,24 +79,24 @@ export default {
     };
   },
 
-  mounted() {
-    const userId = JSON.parse(localStorage.getItem("user")).id;
-    getUser(userId)
-      .then((res) => {
-        this.participatingEvents = res.data.user.participatingEvents;
-        this.createdEvents = res.data.user.createdEvents;
-      })
-      .catch(() => {
-        this.notificationHeading = "Что-то пошло не так";
-        this.notificationText =
-          "Проверьте подключение к интернету и попробуйте перезагрузить страницу";
-        this.isNotificationOpen = true;
-      });
-  },
+  // mounted() {
+  //   const userId = JSON.parse(localStorage.getItem("user")).id;
+  //   getUser(userId)
+  //     .then((res) => {
+  //       this.participatingEvents = res.data.user.participatingEvents;
+  //       this.createdEvents = res.data.user.createdEvents;
+  //     })
+  //     .catch(() => {
+  //       this.notificationHeading = "Что-то пошло не так";
+  //       this.notificationText =
+  //         "Проверьте подключение к интернету и попробуйте перезагрузить страницу";
+  //       this.isNotificationOpen = true;
+  //     });
+  // },
 
   methods: {
     changeActiveEvent(eventId) {
-      const events = this.participatingEvents.concat(this.createdEvents);
+      const events = this.upComingEvents.concat(this.pastEvents);
       events.forEach((event) => {
         if (event.id == eventId) {
           this.activeEvent.title = event.title;
@@ -142,7 +132,7 @@ export default {
 .my-events {
   &-page {
     width: 100%;
-    height: calc(100vh - 80px);
+    height: 100vh;
     display: flex;
     flex-direction: row;
   }

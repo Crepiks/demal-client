@@ -184,7 +184,7 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   background-color: $white;
-  border-radius: 30px;
+  border-radius: 10px;
   z-index: 5;
 
   &-main {
