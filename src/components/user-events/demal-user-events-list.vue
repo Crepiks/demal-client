@@ -40,7 +40,7 @@
           @open-map="$emit('open-map')"
         />
       </div>
-      <div class="list-cards" v-if="pastEvents[0].title && activeOption == 2">
+      <!-- <div class="list-cards" v-if="pastEvents[0].title && activeOption == 2">
         <demal-event-card
           class="list-card"
           v-for="event in pastEvents"
@@ -56,6 +56,12 @@
           @change-active-event="$emit('change-active-event', event.id)"
           @open-map="$emit('open-map')"
         />
+      </div> -->
+      <div class="event-empty" key="empty">
+        <i class="fas fa-campground event-empty-icon"></i>
+        <span class="event-empty-title"
+          >Кажется, у Вас тут еще нет информации</span
+        >
       </div>
     </vuescroll>
     <!-- <div v-else class="list-skeletons">
@@ -258,6 +264,42 @@ export default {
 
   &-skeleton {
     padding: 30px 0;
+  }
+}
+
+.event-empty {
+  padding: 30px 20px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &-icon {
+    margin-bottom: 20px;
+    color: $primary;
+    font-size: 100px;
+    opacity: 0.4;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  &-title {
+    width: 300px;
+    color: $main-dark;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 150%;
+    text-align: center;
+    opacity: 0.5;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
   }
 }
 </style>
