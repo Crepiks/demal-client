@@ -19,6 +19,9 @@ Vue.use(YandexMaps, settings);
 import Skeleton from "vue-loading-skeleton";
 Vue.use(Skeleton);
 
+import vuescroll from "vuescroll/dist/vuescroll-native";
+Vue.use(vuescroll);
+
 new Vue({
   router,
   store,

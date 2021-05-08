@@ -7,101 +7,112 @@
       >
     </div>
     <div v-else class="event-info" key="content">
-      <div class="event-close" @click="$emit('clear-active-event')">
-        <i class="bx bx-x event-close-icon"></i>
-      </div>
-      <div class="event-gallery">
-        <div
-          class="event-image"
-          :style="{ backgroundImage: `url(${activeImage})` }"
-        ></div>
-        <div class="event-images">
-          <div
-            class="event-preview"
-            v-for="(image, index) in images"
-            :key="index"
-            :style="{ backgroundImage: `url(${image.path})` }"
-            @click="activeImage = image.path"
-          ></div>
+      <vuescroll :ops="ops">
+        <div class="event-content">
+          <div class="event-close" @click="$emit('clear-active-event')">
+            <i class="bx bx-x event-close-icon"></i>
+          </div>
+          <div class="event-gallery">
+            <div
+              class="event-image"
+              :style="{ backgroundImage: `url(${activeImage})` }"
+            ></div>
+            <div class="event-images">
+              <div
+                class="event-preview"
+                v-for="(image, index) in images"
+                :key="index"
+                :style="{ backgroundImage: `url(${image.path})` }"
+                @click="activeImage = image.path"
+              ></div>
+            </div>
+          </div>
+          <div class="event-text">
+            <h1 class="event-title">
+              {{ title }}
+              <div class="event-rating">
+                <i class="fas fa-star event-rating-icon"></i>
+                <span class="event-rating-label">4.5</span>
+              </div>
+            </h1>
+            <div class="event-tags">
+              <div class="event-tag">На этой неделе</div>
+              <div class="event-tag">Тур на один день</div>
+              <div class="event-tag">Без спец оборудования</div>
+            </div>
+            <p class="event-description">{{ description }}</p>
+            <div class="event-extra event-extra-first">
+              <h3 class="event-extra-title">Главное</h3>
+              <div class="event-extra-info">
+                <span class="event-extra-label">Начало:</span>
+                <span class="event-extra-data">7 мая 9:00</span>
+              </div>
+              <div class="event-extra-info">
+                <span class="event-extra-label">Конец:</span>
+                <span class="event-extra-data">7 мая 21:30</span>
+              </div>
+              <div class="event-extra-info">
+                <span class="event-extra-label">Место сбора:⁣⁣</span>
+                <span class="event-extra-data">Абая - Жарокова (парковка)</span>
+                <demal-button
+                  size="small"
+                  type="border"
+                  class="event-extra-button"
+                  @click="$emit('open-map')"
+                  >Посмотреть на карте</demal-button
+                >
+              </div>
+              <div class="event-extra-info">
+                <span class="event-extra-label">Необходимые вещи:</span>
+                <span class="event-extra-data"
+                  >Сменные вещи, питье, еду, наличные деньги, удостоверение
+                  личности (обязательно), маска и антисептик</span
+                >
+              </div>
+            </div>
+            <div class="event-extra event-extra-second">
+              <h3 class="event-extra-title">Участники</h3>
+              <div class="event-participant">
+                <span class="event-participant-name event-creator">Азат</span>
+                <span class="event-participant-email">azatuk2005@mail.ru</span>
+              </div>
+              <div class="event-participant">
+                <span class="event-participant-name event-creator">Саяжан</span>
+                <span class="event-participant-email"
+                  >sayazhan.onlassyn@gmail.com</span
+                >
+              </div>
+              <div class="event-participant">
+                <span class="event-participant-name event-creator">Данияр</span>
+                <span class="event-participant-email"
+                  >donchik-donchik@mail.ru</span
+                >
+              </div>
+              <div class="event-participant">
+                <span class="event-participant-name event-creator">Султан</span>
+                <span class="event-participant-email"
+                  >sylia12345@gmail.com</span
+                >
+              </div>
+            </div>
+            <div class="event-subscribe">
+              <demal-button class="event-subscribe-button"
+                >Записаться на тур</demal-button
+              >
+              <span class="event-subscribe-status"
+                >Тур доступен по подписке</span
+              >
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="event-text">
-        <h1 class="event-title">
-          {{ title }}
-          <div class="event-rating">
-            <i class="fas fa-star event-rating-icon"></i>
-            <span class="event-rating-label">4.5</span>
-          </div>
-        </h1>
-        <div class="event-tags">
-          <div class="event-tag">На этой неделе</div>
-          <div class="event-tag">Тур на один день</div>
-          <div class="event-tag">Без спец оборудования</div>
-        </div>
-        <p class="event-description">{{ description }}</p>
-        <div class="event-extra event-extra-first">
-          <h3 class="event-extra-title">Главное</h3>
-          <div class="event-extra-info">
-            <span class="event-extra-label">Начало:</span>
-            <span class="event-extra-data">7 мая 9:00</span>
-          </div>
-          <div class="event-extra-info">
-            <span class="event-extra-label">Конец:</span>
-            <span class="event-extra-data">7 мая 21:30</span>
-          </div>
-          <div class="event-extra-info">
-            <span class="event-extra-label">Место сбора:⁣⁣</span>
-            <span class="event-extra-data">Абая - Жарокова (парковка)</span>
-            <demal-button
-              size="small"
-              type="border"
-              class="event-extra-button"
-              @click="$emit('open-map')"
-              >Посмотреть на карте</demal-button
-            >
-          </div>
-          <div class="event-extra-info">
-            <span class="event-extra-label">Необходимые вещи:</span>
-            <span class="event-extra-data"
-              >Сменные вещи, питье, еду, наличные деньги, удостоверение личности
-              (обязательно), маска и антисептик</span
-            >
-          </div>
-        </div>
-        <div class="event-extra event-extra-second">
-          <h3 class="event-extra-title">Участники</h3>
-          <div class="event-participant">
-            <span class="event-participant-name event-creator">Азат</span>
-            <span class="event-participant-email">azatuk2005@mail.ru</span>
-          </div>
-          <div class="event-participant">
-            <span class="event-participant-name event-creator">Саяжан</span>
-            <span class="event-participant-email"
-              >sayazhan.onlassyn@gmail.com</span
-            >
-          </div>
-          <div class="event-participant">
-            <span class="event-participant-name event-creator">Данияр</span>
-            <span class="event-participant-email">donchik-donchik@mail.ru</span>
-          </div>
-          <div class="event-participant">
-            <span class="event-participant-name event-creator">Султан</span>
-            <span class="event-participant-email">sylia12345@gmail.com</span>
-          </div>
-        </div>
-        <div class="event-subscribe">
-          <demal-button class="event-subscribe-button"
-            >Записаться на тур</demal-button
-          >
-          <span class="event-subscribe-status">Тур доступен по подписке</span>
-        </div>
-      </div>
+      </vuescroll>
     </div>
   </transition>
 </template>
 
 <script>
 import demalButton from "@/components/common/demal-button.vue";
+import vuescroll from "vuescroll";
 
 export default {
   props: {
@@ -125,6 +136,7 @@ export default {
 
   components: {
     "demal-button": demalButton,
+    vuescroll,
   },
 
   data() {
@@ -132,6 +144,41 @@ export default {
       activeImage: "",
       eventStatus: "",
       parsedDate: [],
+      ops: {
+        vuescroll: {
+          mode: "native",
+        },
+        scrollPanel: {
+          initialScrollY: false,
+          initialScrollX: false,
+          scrollingX: false,
+          scrollingY: true,
+          speed: 300,
+          easing: "easeInOutQuint",
+          verticalNativeBarPos: "right",
+        },
+        rail: {
+          background: "#2d2c2c",
+          opacity: 0.0,
+          size: "10px",
+          specifyBorderRadius: "10px",
+          gutterOfEnds: null,
+          gutterOfSide: "0px",
+          keepShow: false,
+        },
+        bar: {
+          showDelay: 1000,
+          onlyShowBarOnScroll: true,
+          keepShow: false,
+          background: "#2d2c2c",
+          opacity: 0.3,
+          hoverStyle: false,
+          specifyBorderRadius: "5px",
+          minSize: 0,
+          size: "10px",
+          disable: false,
+        },
+      },
     };
   },
 
@@ -231,8 +278,8 @@ export default {
 .event {
   &-close {
     position: absolute;
-    top: 20px;
-    left: 10px;
+    top: -10px;
+    left: -10px;
     width: 30px;
     height: 30px;
     display: flex;
@@ -263,9 +310,17 @@ export default {
     width: calc(100% - 36%);
     height: 100%;
     box-sizing: border-box;
+    overflow: auto;
+  }
+
+  &-content {
+    position: relative;
+    padding-right: 14px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    overflow: auto;
   }
 
   &-gallery {

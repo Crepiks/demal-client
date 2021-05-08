@@ -18,24 +18,25 @@
         </div>
       </div>
     </div>
-    <div class="list-cards" v-if="events[0].title">
-      <demal-event-card
-        class="list-card"
-        v-for="event in events"
-        :key="event.id"
-        :title="event.title"
-        :description="event.description"
-        :price="event.price"
-        :path="
-          event.images
-            ? event.images[0].path
-            : 'https://sun9-65.userapi.com/impg/kvt9TuPNUBaDf2RYAL89yD1-GAKG0BWvOw4v-g/Vqkgj4rIhqk.jpg?size=2560x1710&quality=96&sign=2adb41c5b3357682d825e4365a7ed21b&type=album'
-        "
-        @change-active-event="$emit('change-active-event', event.id)"
-        @open-map="$emit('open-map')"
-      />
-    </div>
-    <div v-else class="list-skeletons">
+    <vuescroll :ops="ops">
+      <div class="list-cards" v-if="events[0].title">
+        <demal-event-card
+          class="list-card"
+          v-for="event in events"
+          :key="event.id"
+          :title="event.title"
+          :description="event.description"
+          :price="event.price"
+          :path="
+            event.images
+              ? event.images[0].path
+              : 'https://sun9-65.userapi.com/impg/kvt9TuPNUBaDf2RYAL89yD1-GAKG0BWvOw4v-g/Vqkgj4rIhqk.jpg?size=2560x1710&quality=96&sign=2adb41c5b3357682d825e4365a7ed21b&type=album'
+          "
+          @change-active-event="$emit('change-active-event', event.id)"
+          @open-map="$emit('open-map')"
+        />
+      </div>
+      <!-- <div v-else class="list-skeletons">
       <PuSkeleton
         class="list-skeleton"
         :count="1"
@@ -54,13 +55,15 @@
         width="100%"
         height="130px"
       ></PuSkeleton>
-    </div>
+    </div> -->
+    </vuescroll>
   </div>
 </template>
 
 <script>
 import demalEventCard from "@/components/events/demal-event-card.vue";
 import demalSearchInput from "@/components/common/demal-search-input.vue";
+import vuescroll from "vuescroll";
 
 export default {
   props: {
@@ -73,6 +76,7 @@ export default {
   components: {
     "demal-event-card": demalEventCard,
     "demal-search-input": demalSearchInput,
+    vuescroll,
   },
 
   data() {
@@ -97,6 +101,41 @@ export default {
         },
       ],
       activeTags: [],
+      ops: {
+        vuescroll: {
+          mode: "native",
+        },
+        scrollPanel: {
+          initialScrollY: false,
+          initialScrollX: false,
+          scrollingX: false,
+          scrollingY: true,
+          speed: 300,
+          easing: "easeInOutQuint",
+          verticalNativeBarPos: "right",
+        },
+        rail: {
+          background: "#2d2c2c",
+          opacity: 0.0,
+          size: "8px",
+          specifyBorderRadius: "10px",
+          gutterOfEnds: null,
+          gutterOfSide: "0px",
+          keepShow: false,
+        },
+        bar: {
+          showDelay: 1000,
+          onlyShowBarOnScroll: true,
+          keepShow: false,
+          background: "#2d2c2c",
+          opacity: 0.3,
+          hoverStyle: false,
+          specifyBorderRadius: "5px",
+          minSize: 0,
+          size: "8px",
+          disable: false,
+        },
+      },
     };
   },
 
@@ -187,8 +226,10 @@ export default {
   }
 
   &-cards {
+    padding-right: 8px;
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     overflow: auto;
