@@ -64,6 +64,7 @@
 import vuescroll from "vuescroll";
 import demalEventCard from "@/components/events/demal-event-card.vue";
 import demalSearchInput from "@/components/common/demal-search-input.vue";
+import tags from "@/data/tags";
 
 export default {
   components: {
@@ -79,24 +80,7 @@ export default {
   },
   data: () => ({
     search: "",
-    tags: [
-      {
-        id: 1,
-        title: "На этой неделе",
-      },
-      {
-        id: 2,
-        title: "Тур на день",
-      },
-      {
-        id: 3,
-        title: "Экстремально",
-      },
-      {
-        id: 4,
-        title: "Без спец оборудования",
-      },
-    ],
+    tags,
     activeTags: [],
     ops: {
       vuescroll: {
@@ -134,16 +118,40 @@ export default {
       },
     },
   }),
+  watch: {
+    activeTags() {
+      console.log(this.activeTags);
+    },
+  },
   computed: {
     filteredEvents() {
-      return this.events.filter((event) => {
+      return this.filterEventsByTags(
+        this.filterEventsBySearchQuery(this.events)
+      );
+    },
+  },
+  methods: {
+    filterEventsBySearchQuery(events) {
+      return events.filter((event) => {
         const title = event.title.toLowerCase();
         const searchQuery = this.search.toLowerCase();
         return title.indexOf(searchQuery) !== -1;
       });
     },
-  },
-  methods: {
+    filterEventsByTags(events) {
+      if (!this.activeTags.length) {
+        return events;
+      }
+      return events.filter((event) => {
+        let includes = false;
+        event.tags.forEach((tagId) => {
+          if (this.activeTags.find((tag) => tag.id === tagId)) {
+            includes = true;
+          }
+        });
+        return includes;
+      });
+    },
     handleTag(tagId) {
       let isTagActive = false;
 
