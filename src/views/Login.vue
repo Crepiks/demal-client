@@ -7,7 +7,7 @@
       @close-notification="isNotificationOpen = false"
       :status="notificationStatus"
     />
-    <h1 class="auth-title">Войдите в demal</h1>
+    <h1 class="auth-title">Войдите в Demal</h1>
     <demal-input
       title="Почта"
       placeholder="Введите электронную почту"
@@ -77,7 +77,7 @@ export default {
               selfEmployedId: res.data.user.selfEmployedId,
             };
             localStorage.setItem("user", JSON.stringify(user));
-            this.$router.push("/events");
+            this.$router.push("/tours");
           })
           .catch(() => {
             this.notificationHeading = "Неверная почта или пароль";

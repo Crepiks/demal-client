@@ -7,10 +7,10 @@
       'button-large': size == 'large',
       'button-small': size == 'small',
       'button-rounded': borderRadius == 'rounded',
+      'button-loading': isLoading,
     }"
   >
-    <slot v-if="!isLoading"></slot>
-    <div v-else class="loader loader-arc"></div>
+    <span class="button-content"><slot></slot></span>
   </button>
 </template>
 
@@ -41,6 +41,7 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .button {
+  position: relative;
   padding: 10px 25px;
   color: $white;
   font-size: 16px;
@@ -80,34 +81,47 @@ export default {
   &-rounded {
     border-radius: 50px;
   }
+
+  &-content {
+    transition: 200ms ease-in-out;
+  }
+
+  &-loading {
+    cursor: default;
+
+    & .button-content {
+      visibility: hidden;
+      opacity: 0;
+    }
+    &:hover {
+      opacity: 1;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      border: 4px solid transparent;
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: button-loading-spinner 1s ease infinite;
+    }
+  }
 }
 
-.loader {
-  position: relative;
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-  border-radius: 50%;
-}
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
 
-.loader:after {
-  content: "";
-  position: absolute;
-  left: 3px;
-  top: 3px;
-  height: 12px;
-  width: 12px;
-  display: block;
-  border-radius: 50%;
-  background: $primary;
-}
-
-.loader-arc {
-  animation-name: spin;
-  animation-duration: 1.5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  background-image: linear-gradient(270deg, $white 20%, transparent 50%),
-    linear-gradient(180deg, $primary 50%, $white 50%);
+  to {
+    transform: rotate(1turn);
+  }
 }
 </style>

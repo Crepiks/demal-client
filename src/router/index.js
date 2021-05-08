@@ -14,6 +14,14 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
+    name: "Home",
+    component: Home,
+    meta: {
+      title: "Demal - все туры Казахстана в одной подписке",
+    },
+  },
+  {
+    path: "/",
     name: "defaultLayout",
     component: defaultLayout,
     children: [
@@ -22,14 +30,6 @@ const routes = [
         name: "headerLayout",
         component: headerLayout,
         children: [
-          {
-            path: "/",
-            name: "Home",
-            component: Home,
-            meta: {
-              title: "demal - вдали от городской суеты",
-            },
-          },
           {
             path: "/tours",
             name: "tours",

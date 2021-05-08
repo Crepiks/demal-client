@@ -9,7 +9,7 @@
     />
     <h1 class="auth-title">
       Добро пожаловать<br />
-      в demal
+      в Demal
     </h1>
     <demal-input
       title="Имя"
@@ -115,7 +115,7 @@ export default {
                 selfEmployedId: res.data.user.selfEmployedId,
               };
               localStorage.setItem("user", JSON.stringify(user));
-              this.$router.push("/events");
+              this.$router.push("/tours");
             })
             .catch(() => {
               this.notificationHeading = "Что-то пошло не так";

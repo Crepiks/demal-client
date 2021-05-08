@@ -29,7 +29,7 @@ export default {};
     justify-content: center;
     align-items: center;
     background-color: #74b9ff30;
-    background-image: url("../../assets/images/auth-background.svg");
+    background-image: url("../../assets/images/auth-background.jpg");
     background-size: cover;
     background-position: bottom;
     background-repeat: no-repeat;
@@ -74,7 +74,7 @@ export default {};
     height: auto;
     display: flex;
     flex-direction: column;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 0 20px #3c3c3c10;
   }
