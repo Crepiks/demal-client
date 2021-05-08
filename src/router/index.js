@@ -7,6 +7,7 @@ import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
 import Events from "@/views/Events.vue";
 import UserEvents from "@/views/UserEvents.vue";
+import Subscription from "@/views/Subscription.vue";
 
 Vue.use(VueRouter);
 
@@ -35,6 +36,14 @@ const routes = [
             component: Events,
             meta: {
               title: "Все туры",
+            },
+          },
+          {
+            path: "/subscription",
+            name: "subscription",
+            component: Subscription,
+            meta: {
+              title: "Подписка",
             },
           },
           {
