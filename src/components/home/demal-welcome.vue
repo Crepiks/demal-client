@@ -12,7 +12,9 @@
         озере Кольсай? Сделайте это сейчас!
       </p>
       <div class="welcome-button">
-        <demal-button size="large">Перейти к турам</demal-button>
+        <demal-button size="large" @click="$router.push('/login')"
+          >Перейти к турам</demal-button
+        >
       </div>
     </div>
   </section>
@@ -59,7 +61,7 @@ export default {
   }
 
   &-text {
-    margin-left: 10%;
+    margin-left: 8%;
     width: 750px;
     display: flex;
     flex-direction: column;

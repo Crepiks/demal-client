@@ -1,7 +1,9 @@
 <template>
   <header class="header">
     <img src="@/assets/images/logo.png" alt="Demal" class="header-logo" />
-    <demal-button type="border" :inverted="true">Войти</demal-button>
+    <demal-button type="border" :inverted="true" @click="$router.push('/login')"
+      >Войти</demal-button
+    >
   </header>
 </template>
 
