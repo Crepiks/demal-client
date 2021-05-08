@@ -2,11 +2,11 @@
   <div class="search-container">
     <input
       :name="name"
-      type="text"
-      class="search-input"
       :placeholder="placeholder"
       :value="value"
-      @input="updateValue($event.target.value)"
+      type="text"
+      class="search-input"
+      @input="$emit('input', $event.target.value)"
     />
     <label :for="name" class="search-label"
       ><i class="fas fa-search search-label-icon"></i
@@ -16,6 +16,10 @@
 
 <script>
 export default {
+  model: {
+    prop: "value",
+    event: "input",
+  },
   props: {
     name: {
       type: String,

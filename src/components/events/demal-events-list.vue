@@ -22,7 +22,7 @@
       <div class="list-cards" v-if="events[0].title">
         <demal-event-card
           class="list-card"
-          v-for="event in events"
+          v-for="event in filteredEvents"
           :key="event.id"
           :title="event.title"
           :description="event.description"
@@ -61,84 +61,88 @@
 </template>
 
 <script>
+import vuescroll from "vuescroll";
 import demalEventCard from "@/components/events/demal-event-card.vue";
 import demalSearchInput from "@/components/common/demal-search-input.vue";
-import vuescroll from "vuescroll";
 
 export default {
+  components: {
+    "demal-event-card": demalEventCard,
+    "demal-search-input": demalSearchInput,
+    vuescroll,
+  },
   props: {
     events: {
       type: Array,
       required: true,
     },
   },
-
-  components: {
-    "demal-event-card": demalEventCard,
-    "demal-search-input": demalSearchInput,
-    vuescroll,
-  },
-
-  data() {
-    return {
-      search: "",
-      tags: [
-        {
-          id: 1,
-          title: "На этой неделе",
-        },
-        {
-          id: 2,
-          title: "Тур на день",
-        },
-        {
-          id: 3,
-          title: "Экстремально",
-        },
-        {
-          id: 4,
-          title: "Без спец оборудования",
-        },
-      ],
-      activeTags: [],
-      ops: {
-        vuescroll: {
-          mode: "native",
-        },
-        scrollPanel: {
-          initialScrollY: false,
-          initialScrollX: false,
-          scrollingX: false,
-          scrollingY: true,
-          speed: 300,
-          easing: "easeInOutQuint",
-          verticalNativeBarPos: "right",
-        },
-        rail: {
-          background: "#2d2c2c",
-          opacity: 0.0,
-          size: "8px",
-          specifyBorderRadius: "10px",
-          gutterOfEnds: null,
-          gutterOfSide: "0px",
-          keepShow: false,
-        },
-        bar: {
-          showDelay: 1000,
-          onlyShowBarOnScroll: true,
-          keepShow: false,
-          background: "#2d2c2c",
-          opacity: 0.3,
-          hoverStyle: false,
-          specifyBorderRadius: "5px",
-          minSize: 0,
-          size: "8px",
-          disable: false,
-        },
+  data: () => ({
+    search: "",
+    tags: [
+      {
+        id: 1,
+        title: "На этой неделе",
       },
-    };
+      {
+        id: 2,
+        title: "Тур на день",
+      },
+      {
+        id: 3,
+        title: "Экстремально",
+      },
+      {
+        id: 4,
+        title: "Без спец оборудования",
+      },
+    ],
+    activeTags: [],
+    ops: {
+      vuescroll: {
+        mode: "native",
+      },
+      scrollPanel: {
+        initialScrollY: false,
+        initialScrollX: false,
+        scrollingX: false,
+        scrollingY: true,
+        speed: 300,
+        easing: "easeInOutQuint",
+        verticalNativeBarPos: "right",
+      },
+      rail: {
+        background: "#2d2c2c",
+        opacity: 0.0,
+        size: "8px",
+        specifyBorderRadius: "10px",
+        gutterOfEnds: null,
+        gutterOfSide: "0px",
+        keepShow: false,
+      },
+      bar: {
+        showDelay: 1000,
+        onlyShowBarOnScroll: true,
+        keepShow: false,
+        background: "#2d2c2c",
+        opacity: 0.3,
+        hoverStyle: false,
+        specifyBorderRadius: "5px",
+        minSize: 0,
+        size: "8px",
+        disable: false,
+      },
+    },
+  }),
+  computed: {
+    filteredEvents() {
+      return this.events.filter((event) => {
+        const title = event.title.toLowerCase();
+        const searchQuery = this.search.toLowerCase();
+        return title.indexOf(searchQuery) !== -1;
+      });
+    },
   },
-
   methods: {
     handleTag(tagId) {
       let isTagActive = false;
