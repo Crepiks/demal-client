@@ -13,9 +13,6 @@
       <router-link to="/my-tours" class="header-link">
         <i class="fas fa-hiking header-link-icon"></i>
       </router-link>
-      <router-link to="/profile" class="header-link">
-        <i class="fas fa-user header-link-icon"></i>
-      </router-link>
     </div>
     <div @click="logout" class="header-link header-danger">
       <i class="fas fa-sign-out-alt header-link-icon"></i>
