@@ -8,6 +8,7 @@
       'button-small': size == 'small',
       'button-rounded': borderRadius == 'rounded',
       'button-loading': isLoading,
+      'button-inverted': inverted,
     }"
   >
     <span class="button-content"><slot></slot></span>
@@ -30,6 +31,10 @@ export default {
       default: "medium",
     },
     isLoading: {
+      type: Boolean,
+      default: false,
+    },
+    inverted: {
       type: Boolean,
       default: false,
     },
@@ -84,6 +89,11 @@ export default {
 
   &-content {
     transition: 200ms ease-in-out;
+  }
+
+  &-inverted {
+    color: $white;
+    border-color: $white;
   }
 
   &-loading {
